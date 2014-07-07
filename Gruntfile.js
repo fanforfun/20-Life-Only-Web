@@ -3,18 +3,11 @@
     'use strict';
 
     module.exports = function(grunt) {
+        //TODO explode http://habrahabr.ru/post/215267/
 
         grunt.initConfig({
             pkg: grunt.file.readJSON('package.json'),
             concat: {
-                js: {
-                    options: {
-                        separator: ';'
-                    },
-                    src: ['src/js/**/*.js'],
-                    dest: 'build/js/app.js~',
-                    build: 'build/js/app.js'
-                },
                 css: {
                     options: {
                         separator: ''
@@ -25,17 +18,7 @@
                 }
             },
             clean: {
-                js: ['build/**/*.*~']
-            },
-            uglify: {
-                dist: {
-                    options: {
-                        banner: '/*! <%= pkg.fullname %> <%= pkg.version %>, <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-                    },
-                    files: {
-                        '<%= concat.js.build %>': ['<%= concat.js.build %>']
-                    }
-                }
+                all: ['build/**/*.*~']
             },
             less: {
                 assets: {
@@ -97,6 +80,20 @@
                     src: ['<%= less.assets.prepared %>']
                 }
             },
+            requirejs: {
+                compile: {
+                    options: {
+                        baseUrl: 'src/js',
+                        mainConfigFile:'./src/config.js',
+                        out: 'build/js/app.js',
+                        optimize: 'none', //TODO 'uglify'
+                        logLevel: 0,
+                        findNestedDependencies: true,
+                        fileExclusionRegExp: /^\./,
+                        inlineText: true
+                    }
+                }
+            },
             watch: {
                 dev: {
                     options: {
@@ -131,13 +128,15 @@
         grunt.loadNpmTasks('grunt-contrib-cssmin');
         grunt.loadNpmTasks('grunt-contrib-htmlmin');
         grunt.loadNpmTasks('grunt-contrib-less');
+        grunt.loadNpmTasks('grunt-contrib-requirejs');
 
         grunt.registerTask('default', [
             'htmlhint', 'jscs', 'jshint',
             'less',
             'csslint',
             'concat',
-            'cssmin', 'uglify', 'htmlmin'
+            'cssmin', 'htmlmin',
+            'requirejs'
         ]);
 
     };

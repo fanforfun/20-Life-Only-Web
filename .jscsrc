@@ -33,8 +33,6 @@
     "requireSpaceBeforeBinaryOperators": true,
     "requireSpaceBeforePostfixUnaryOperators": true,
     "requireSpacesInConditionalExpression": true,
-    "disallowSpaceAfterBinaryOperators": true,
-    "disallowSpaceAfterPrefixUnaryOperators": true,
 
     "requireDotNotation": true,
     "requireParenthesesAroundIIFE": true,
