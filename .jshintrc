@@ -1,0 +1,75 @@
+{
+    "passfail": false,  // Stop on first error.
+    "maxerr": 100,    // Maximum error before stopping.
+
+    "globals": {
+        "define": false,
+        "require": false,
+        "console": false
+    },
+
+    "debug": false,
+    "devel": false,
+
+    "workerworker": false,
+    "browser": false,
+    "node": false,
+    "jquery": false,
+
+    "esnext": false, // not use ES.next features like "const"
+    "strict": true, // ecmascript strict mode for function scopes
+    //TODO
+    "globalstrict": false,
+
+    "freeze": false, //This options prohibits overwriting prototypes of native objects such as Array, Date and so on.
+
+    "asi": false,  // semicolons
+
+    "laxbreak": false,   // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
+    "laxcomma": false, // do not use comma-first style
+    "bitwise": true,   // Prohibit bitwise operators (&, |, ^, etc.).
+    "boss": false,  // Tolerate assignments inside if, for & while. Usually conditions & loops are for comparison, not assignments.
+    "curly": true,   // Require {} for every new block or scope.
+    "eqeqeq": true,   // Require triple equals i.e. `===`.
+    "eqnull": false,  // Tolerate use of `== null`.
+    "evil": false,  // Tolerate use of `eval`.
+    "expr": false,  // Tolerate `ExpressionStatement` as Programs.
+    "forin": false,  // Tolerate `for in` loops without `hasOwnPrototype`.
+    "immed": true,   // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
+    "latedef": true,   // Prohipit variable use before definition.
+    "loopfunc": false,  // Allow functions to be defined within loops.
+    "noarg": true,   // Prohibit use of `arguments.caller` and `arguments.callee`.
+    "regexp": true,   // Prohibit `.` and `[^...]` in regular expressions.
+    "scripturl": true,   // Tolerate script-targeted URLs.
+    "supernew": false,  // Tolerate `new function () { ... };` and `new Object;`.
+    "onecase": false, // do not use switch, if an if-block will be better
+
+    "unused": true,  //
+    "undef": true,   // Require all non-global variables be declared before they are used.
+    "funcscope": false, // never declare variables in blocks othen than functions
+    "shadow": false,  // Allows re-define variables later in code e.g. `var x=1; x=2;`.
+    "camelcase": true,
+
+    "multistr": false,
+    //TODO double
+    "quotmark": "single", // only using single quotes for strings
+    "regexdash": false, // not use unescaped - at the end of regular expressions
+    "nonbsp": true, //warns about "non-breaking whitespace" characters
+
+    "maxdepth": 2, // maximum nesting blocks
+    "maxparams": 3, //the max number of formal parameters allowed per function:
+    //TODO
+    "maxstatements": 10, //the max number of statements allowed per function
+
+    "newcap": true,   // Require capitalization of all constructor functions e.g. `new F()`.
+    "noempty": true,   // Prohibit use of empty blocks.
+    "nonew": true,   // Prohibit use of constructors for side-effects.
+    "plusplus": false,  // Prohibit use of `++` & `--`.
+    //TODO
+    "sub": false,  // Tolerate all forms of subscript notation besides dot notation e.g. `dict['key']` instead of `dict.key`.
+    "trailing": true,   // Prohibit trailing whitespaces.
+    "smarttabs": false, // do not use tabs and spaces for indentation
+
+    "indent": 4,       // Specify indentation spacing
+    "maxlen": 160
+}

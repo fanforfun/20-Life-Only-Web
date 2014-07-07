@@ -1,0 +1,33 @@
+{
+    "name": "20 Life Only",
+    "version": "0.0.1",
+    "authors": [
+        "Sergey Bondar"
+    ],
+    "description": "A very simple MTG Life Counter.",
+    "keywords": [
+        "game",
+        "MTG",
+        "Life Counter"
+    ],
+
+    "private": true,
+
+    "main": "src/bootstrap.js",
+    "ignore": [
+        "node_modules",
+        "src/vendor",
+        "test",
+        "build",
+        ".gitignore",
+        ".gitattributes"
+    ],
+    "dependencies": {
+        "requirejs": "latest",
+        "jquery": "latest",
+        "backbone-amd": "latest",
+        "underscore-amd": "latest",
+        "modernizr": "latest",
+        "velocity": "latest"
+    }
+}
