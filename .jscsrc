@@ -29,28 +29,13 @@
         "<",
         "<="
     ],
-    "disallowLeftStickedOperators": [
-        "?",
-        "+",
-        "-",
-        "/",
-        "*",
-        "=",
-        "==",
-        "===",
-        "!=",
-        "!==",
-        ">",
-        ">=",
-        "<",
-        "<="
-    ],
-    "disallowRightStickedOperators": ["?", "+", "/", "*", ":", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<="],
-    "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
-    "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
 
-    "requireRightStickedOperators": ["!"],
-    "requireLeftStickedOperators": [","],
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceBeforePostfixUnaryOperators": true,
+    "requireSpacesInConditionalExpression": true,
+    "disallowSpaceAfterBinaryOperators": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+
     "requireDotNotation": true,
     "requireParenthesesAroundIIFE": true,
     "requireCamelCaseOrUpperCaseIdentifiers": true,
@@ -61,18 +46,16 @@
     "requireBlocksOnNewline": true,
     "disallowEmptyBlocks": true,
     "disallowSpacesInsideParentheses": true,
-    "requireSpacesInsideObjectBrackets": true,
+    "requireSpacesInsideObjectBrackets": "all",
     "disallowQuotedKeysInObjects": true,
     "disallowSpaceAfterObjectKeys": true,
     "requireCommaBeforeLineBreak": true,
-    "requireAlignedObjectValues": true,
+    "requireAlignedObjectValues": "all",
     "disallowSpacesInsideArrayBrackets": true,
     "disallowSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": true,
-        "beforeOpeningCurlyBrace": false
+        "beforeOpeningRoundBrace": true
     },
     "requireSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": false,
         "beforeOpeningCurlyBrace": true
     },
     "validateJSDoc": {
@@ -83,6 +66,5 @@
 
     "requireCapitalizedConstructors": true,
     "disallowMixedSpacesAndTabs": true,
-    "disallowTrailingWhitespace": true,
     "validateIndentation": 4
 }

@@ -1,0 +1,98 @@
+/*
+@media all and (orientation: portrait) {
+    @-ms-viewport {
+        width: 320px;
+        user-zoom: fixed;
+        max-zoom: 1;
+        min-zoom: 1;
+    }
+}
+
+@media all and (orientation: landscape) {
+    @-ms-viewport {
+        width: 480px;
+        user-zoom: fixed;
+        max-zoom: 1;
+        min-zoom: 1;
+    }
+}
+*/
+
+html {
+  width: 100%;
+  -ms-touch-action: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  font-size: 11pt;
+  font-family: "Segoe WP";
+  letter-spacing: 0.02em;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.tile {
+  background: #F0C27A;
+  width: 100%;
+  height: 46%;
+  margin-top: 4%;
+  position: relative;
+}
+
+.player1 {
+  margin-top: 0;
+
+  &.player_up {
+    -ms-transform-origin: 50% 100%;
+    -ms-transform: perspective(70%) rotateX(7deg);
+  }
+  &.player_down {
+    -ms-transform-origin: 50% 0;
+    -ms-transform: perspective(70%) rotateX(-7deg);
+  }
+}
+
+.player2 {
+  -ms-transform: rotate(180deg); /* Для IE */
+  -webkit-transform: rotate(180deg); /* Для Safari, Chrome, iOS */
+  transform: rotate(180deg);
+
+  &.player_up {
+    -ms-transform: perspective(70%) rotate(180deg) rotateX(7deg);
+  }
+  &.player_down {
+    -ms-transform: perspective(70%) rotate(180deg) rotateX(-7deg);
+  }
+}
+
+.life {
+  text-align: center;
+  font-size: 30vh;
+
+  &_control {
+    position: absolute;
+    width: 100%;
+  }
+
+  &_down {
+    top: 35%;
+    height: 65%;
+    z-index: 2;
+  }
+
+  &_up {
+    height: 35%;
+    z-index: 3;
+  }
+}

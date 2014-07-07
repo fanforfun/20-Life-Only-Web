@@ -1,5 +1,6 @@
 A very simple MTG Life Counter.
 
+На деплое - сверять версии и отказывать? Плюс команда для быстрого увеличения версии.
 
 HTML5 App.
 
@@ -31,6 +32,20 @@ Install grunt.
 
     npm install -g grunt-cli
 
+Devmode
+=======
+
+Install [LiveReload](http://livereload.com/)
+
+Run
+
+    grunt watch
+
+Open build/index.html and enable LiveReload.
+
+Inspections
+===========
+
 jshint
 ------
 
@@ -41,7 +56,12 @@ jscs
 
 Enable JS inspections .jscsrc
 
+CSSlint
+---------
+
+Enable CSS inspections .csslintrc
+
 HTML hint
 ---------
 
-????
+Enable HTML inspections .htmlhintrc
