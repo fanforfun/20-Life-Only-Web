@@ -22,20 +22,51 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="format-detection" content="address=no">
 
-        <title>20 Life Only</title>
+        <title>BTW, кто все эти люди?</title>
     </head>
-    <body>
+    <body class="app">
+        <div class="screen main-screen">
+            <div class="header">
+                <h1>Кто все эти люди?</h1>
+            </div>
 
-        <div class="player player1 tile">
-          <div class="life_control life_up"></div>
-          <div class="life_control life_down"></div>
-          <div class="life"></div>
+            <div class="settings">
+                <div class="settings_wrap">
+                    <ul class="radio settings_filter">
+                        <li data-id="important" class="radio_element radio_element_checked">важные</li>
+                        <li data-id="all" class="radio_element">все</li>
+                        <li data-id="id" class="radio_element">наш отдел</li>
+                    </ul>
+                    <!--<ul class="radio settings_difficulty">
+                        <li data-id="1" class="radio_element radio_element_checked">easy</li>
+                        <li data-id="2" class="radio_element">norma</li>
+                        <li data-id="3" class="radio_element">hardcore</li>
+                    </ul>-->
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            <div class="mode">
+                <span title="Начать" data-id="1" class="button mode_start">Тест на имена</span>
+                <span title="Начать" data-id="2" class="button mode_start">Тест на должности</span>
+                <span title="Начать" data-id="3" class="button mode_start">Тест на лица</span>
+            </div>
         </div>
 
-        <div class="player player2 tile player_invert">
-          <div class="life_control life_up"></div>
-          <div class="life_control life_down"></div>
-          <div class="life"></div>
+        <div class="screen game-screen hided">
+            <div class="screen game-screen-1 hided">
+                <div class="face">
+
+                </div>
+                <ul class="names pattern"></ul>
+            </div>
+
+            <div class="screen game-screen-2 hided">
+            </div>
+
+            <div class="screen game-screen-3 hided">
+
+            </div>
         </div>
 
         <!-- @exclude -->

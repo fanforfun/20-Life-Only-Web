@@ -1,3 +1,8 @@
+@color0: #ffffff;
+@color1: #FF9900;
+@color2: #7014CC;
+@color3: #19FF65;
+
 
 html {
   width: 100%;
@@ -20,57 +25,101 @@ body {
   color: #ffffff;
 }
 
-.tile {
-  background: #F0C27A;
-  width: 100%;
-  height: 46%;
-  margin-top: 4%;
-  position: relative;
-}
-
-.player1 {
-  margin-top: 0;
-
-  &.player_up {
-    -ms-transform-origin: 50% 100%;
-    -ms-transform: perspective(70%) rotateX(7deg);
-  }
-  &.player_down {
-    -ms-transform-origin: 50% 0;
-    -ms-transform: perspective(70%) rotateX(-7deg);
-  }
-}
-
-.player2 {
-  -ms-transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  transform: rotate(180deg);
-
-  &.player_up {
-    -ms-transform: perspective(70%) rotate(180deg) rotateX(7deg);
-  }
-  &.player_down {
-    -ms-transform: perspective(70%) rotate(180deg) rotateX(-7deg);
-  }
-}
-
-.life {
-  text-align: center;
-  font-size: 30vh;
-
-  &_control {
-    position: absolute;
+.screen {
     width: 100%;
-  }
+    height: 100%;
+    min-width: 1000px;
+    min-height: 600px;
+}
 
-  &_down {
-    top: 35%;
-    height: 65%;
-    z-index: 2;
-  }
+.header {
+    background-color: @color3;
+    height: 20%;
+}
+h1 {
+    font-size: 4em;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 5px;
+}
+.settings {
+    background-color: @color2;
+    color: @color1;
+    height: 40%;
 
-  &_up {
-    height: 35%;
-    z-index: 3;
-  }
+    &_wrap {
+        width: 600px;
+        padding: 10vh 0 0;
+        margin: 0 auto;
+    }
+    &_filter {
+        float: left;
+    }
+    &_difficulty {
+        float: right;
+    }
+}
+.radio {
+    &_element {
+        font-size: 1.4em;
+        display: block;
+        text-align: center;
+        padding: 10px 10px;
+        margin: 0 0 5px;
+        cursor: pointer;
+
+        &_checked {
+            background: @color1;
+            color: @color0;
+            border-radius: 6px;
+        }
+    }
+}
+.mode {
+    background-color: @color1;
+    height: 40%;
+    text-align: center;
+    padding-top: 10vh;
+
+    .mode_start {
+        font-size: 1.6em;
+        margin: 0 20px;
+        border: 2px solid @color2;
+        color: @color2;
+    }
+}
+.button {
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.face {
+    height: 30%;
+    margin-top: 10vh;
+    background-color: @color1;
+}
+.names {
+    height: 70%;
+    background-color: @color2;
+}
+
+.pattern {
+    background-repeat: repeat;
+}
+
+.generate-patterns(@n, @i: 1) when (@i =< @n) {
+    .pattern-@{i} {
+        background-image: url('../img/patterns/@{i}.png');
+    }
+    .generate-patterns(@n, (@i + 1));
+}
+.generate-patterns(1);
+
+
+.hided {
+    display: none;
+}
+.clear {
+    clear: both;
 }

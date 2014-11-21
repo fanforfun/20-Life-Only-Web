@@ -29,7 +29,6 @@
     "disallowKeywords": ["with"],
     "requireCapitalizedConstructors": true,
     "disallowMultipleLineBreaks": true,
-    "disallowMultipleVarDecl": true,
     "requireBlocksOnNewline": true,
     "disallowEmptyBlocks": true,
     "disallowSpacesInsideParentheses": true,

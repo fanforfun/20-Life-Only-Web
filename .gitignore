@@ -2,6 +2,8 @@
 src/vendor/
 node_modules/
 
+build
+
 *.log
 
 .buildpath

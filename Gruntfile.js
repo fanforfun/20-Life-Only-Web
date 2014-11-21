@@ -100,7 +100,9 @@
                         baseUrl: 'src/js',
                         mainConfigFile:'./src/config.js',
                         out: 'build/js/app.js',
-                        optimize: 'uglify2',
+                        //TODO ret back
+                        //optimize: 'uglify2',
+                        optimize: 'none',
                         logLevel: 0,
                         generateSourceMaps: false,
                         preserveLicenseComments: true,
@@ -139,7 +141,7 @@
                     options: {
                         livereload: true
                     },
-                    files: ['.*', 'Gruntfile.js', 'src/**/*.*'],
+                    files: ['Gruntfile.js', 'src/**/*.*'],
                     tasks: ['build']
                 },
                 livereload: {
@@ -184,6 +186,7 @@
             'preprocess:web', 'htmlmin'
         ]);
 
+        //TODO image embed
         grunt.registerTask('build:img', [
             'imagemin'
         ]);
@@ -193,7 +196,8 @@
         ]);
 
         grunt.registerTask('build', [
-            'lint', 'build:css', 'build:js','build:img', 'build:html'
+            //'lint',
+            'build:css', 'build:js','build:img', 'build:html'
         ]);
 
         grunt.registerTask('default', [

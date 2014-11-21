@@ -1,10 +1,11 @@
-define('app', ['model/model', 'backbone', 'jquery'],
-    function(model, B, $) {
+require(['view/router', 'model/game', 'backbone', 'jquery', 'super'],
+    function(Router, Game, B, $) {
         'use strict';
 
-        console.log(model);
-        model.s();
-        return {
+        new Router({
+            el: $('.app'),
+            model: new Game()
+        });
 
-        };
-    });
+    }
+);
