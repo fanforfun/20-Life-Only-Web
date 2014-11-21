@@ -1,26 +1,46 @@
-﻿<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
-    <!--@see http://frontender.com.ua/mobile-web/wtf-viewport/ -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
-    <title>20 Life Only</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="en-EN" manifest="offline.manifest">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
 
-    <div class="player player1 tile">
-      <div class="life_control life_up"></div>
-      <div class="life_control life_down"></div>
-      <div class="life"></div>
-    </div>
+        <!--@see http://frontender.com.ua/mobile-web/wtf-viewport/ -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="HandheldFriendly" content="True">
 
-    <div class="player player2 tile player_invert">
-      <div class="life_control life_up"></div>
-      <div class="life_control life_down"></div>
-      <div class="life"></div>
-    </div>
+        <!--iphone fullscreen-->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <script src="js/app.js"></script>
-  </body>
+        <!--ie-->
+        <meta http-equiv="imagetoolbar" content="no">
+        <meta http-equiv="cleartype" content="on">
+        <meta http-equiv="msthemecompatible" content="no">
+
+        <meta name="format-detection" content="telephone=no">
+        <meta name="format-detection" content="address=no">
+
+        <title>20 Life Only</title>
+    </head>
+    <body>
+
+        <div class="player player1 tile">
+          <div class="life_control life_up"></div>
+          <div class="life_control life_down"></div>
+          <div class="life"></div>
+        </div>
+
+        <div class="player player2 tile player_invert">
+          <div class="life_control life_up"></div>
+          <div class="life_control life_down"></div>
+          <div class="life"></div>
+        </div>
+
+        <!-- @exclude -->
+        <script src="vendor/requirejs/require.js" data-main="config"></script>
+        <!-- @endexclude -->
+        <!--@include index-prod.html.part -->
+    </body>
 </html>

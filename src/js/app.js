@@ -1,9 +1,10 @@
-﻿define('app', ['model/model', 'requirejs', 'backbone', 'underscore', 'jquery'],function(model,B, _, $) {
-    'use strict';
+define('app', ['model/model', 'backbone', 'jquery'],
+    function(model, B, $) {
+        'use strict';
 
-    console.log(model);
-    model.s();
-    return {
+        console.log(model);
+        model.s();
+        return {
 
-    };
-});
+        };
+    });

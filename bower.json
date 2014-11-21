@@ -1,14 +1,14 @@
 {
-    "name": "20 Life Only",
+    "name": "whoareyoupeople",
     "authors": [
         "Sergey Bondar"
     ],
-    "description": "A very simple MTG Life Counter.",
-    "keywords": [
-        "game",
-        "MTG",
-        "Life Counter"
-    ],
+  "description": "Face recognizer quiz",
+  "keywords": [
+      "game",
+      "faces",
+      "Alpari"
+  ],
 
     "private": true,
 
@@ -23,6 +23,11 @@
     ],
     "dependencies": {
         "requirejs": "latest",
+        "requirejs-text": "latest",
+        "requirejs-domready": "~2.0.1",
+        "requirejs-plugins": "~1.0.2",
+        "require-less": "~0.1.2",
+        "require-css": "~0.1.2",
         "jquery": "latest",
         "backbone-amd": "latest",
         "underscore-amd": "latest",

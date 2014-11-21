@@ -1,5 +1,6 @@
 require.config({
     name: 'app',
+    urlArgs: 'boost=' + Math.random(),
     paths: {
         jquery: '../vendor/jquery/dist/jquery.min',
         underscore: '../vendor/underscore-amd/underscore-min',
@@ -20,5 +21,3 @@ require.config({
         }
     }
 });
-
-var s = 1;

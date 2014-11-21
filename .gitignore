@@ -9,6 +9,7 @@ node_modules/
 .metadata
 bin/
 tmp/
+*.kate-swp
 *.tmp
 *.bak
 *.save
