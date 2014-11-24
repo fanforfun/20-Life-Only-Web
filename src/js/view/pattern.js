@@ -1,7 +1,7 @@
 define('view/pattern', ['backbone', 'jquery'], function(B, $) {
     'use strict';
 
-    var maxPatterns = 1,
+    var maxPatterns = 2,
         pxHorizontalInSecond = 40,
         pxVerticalInSecond = 80;
 
