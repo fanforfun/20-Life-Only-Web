@@ -8,10 +8,10 @@ define('view/game/names', ['view/game'], function(Game) {
             this._super("initialize");
 
             console.log('game names');
-
-            //setTimeout(function() {
-            //    model.gameOver();
-            //}, 1000);
+console.log(model.getItems());
+            setTimeout(function() {
+                model.gameOver();
+            }, 1000);
         },
 
         render: function() {

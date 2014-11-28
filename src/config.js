@@ -6,7 +6,7 @@ require.config({
         underscore: '../vendor/underscore-amd/underscore-min',
         backbone: '../vendor/backbone-amd/backbone-min',
         velocity: '../vendor/velocity/jquery.velocity.min',
-        modernizr: '../vendor/modernizr/modernizr'
+        es5shim: '../vendor/es5-shim/es5-shim'
     },
     shim: {
         jquery: {

@@ -23,8 +23,9 @@
             less: {
                 assets: {
                     options: {
-                        paths: 'src/less',
-                        strictUnits: true
+                        ieCompat: false,
+                        strictUnits: true,
+                        paths: 'src/less'
                     },
                     prepared: 'build/css/styles.css~~',
                     files: {
@@ -89,7 +90,7 @@
                         expand: true,
                         cwd: 'src/img/',
                         src: ['**/*.{png,jpg,gif}'],
-                        dest: 'build/img'
+                        dest: 'src/img'
                     }]
                 }
             },
@@ -136,6 +137,19 @@
                     dest : '<%= pkg.html %>~'
                 }
             },
+            copy: {
+                json: {
+                    files: [{
+                        expand: true,
+                        nonull: true,
+                        cwd: 'src/json/',
+                        src: '**',
+                        dest: 'build/json/',
+                        flatten: true,
+                        filter: 'isFile'
+                    }]
+                }
+            },
             watch: {
                 dev: {
                     options: {
@@ -158,6 +172,7 @@
         });
 
         grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-contrib-copy');
 
         grunt.loadNpmTasks('grunt-htmlhint');
         grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -186,9 +201,13 @@
             'preprocess:web', 'htmlmin'
         ]);
 
-        //TODO image embed
         grunt.registerTask('build:img', [
             'imagemin'
+        ]);
+
+        //TODO image embed
+        grunt.registerTask('build:static', [
+            'build:css', 'build:js', 'build:html', 'copy'
         ]);
 
         grunt.registerTask('build:js', [
@@ -197,7 +216,7 @@
 
         grunt.registerTask('build', [
             //'lint',
-            'build:css', 'build:js','build:img', 'build:html'
+            'build:static'
         ]);
 
         grunt.registerTask('default', [

@@ -26,13 +26,11 @@
         "requirejs-text": "latest",
         "requirejs-domready": "~2.0.1",
         "requirejs-plugins": "~1.0.2",
-        "require-less": "~0.1.2",
-        "require-css": "~0.1.2",
         "jquery": "latest",
         "backbone-amd": "latest",
         "underscore-amd": "latest",
-        "modernizr": "latest",
         "velocity": "latest",
+        "es5-shim": "latest",
         "HTML5-Reset": "latest"
     }
 }

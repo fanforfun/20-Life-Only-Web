@@ -22,15 +22,21 @@ define('view/main', ['backbone', 'jquery'], function(B, $) {
                 return;
             }
 
-            this.$('.radio_element').removeClass(checked);
+            $el.closest('.radio').find('.radio_element').removeClass(checked);
             $el.addClass(checked);
         },
 
         start: function(e) {
             var $el = $(e.target),
-                mode = $el.data('id');
+                mode = $el.data('id'),
+                cond =  this.$('.settings_filter').find('.radio_element_checked').data('id'),
+                difficulty =  this.$('.settings_difficulty').find('.radio_element_checked').data('id');
 
-            this.model.gameStart(mode);
+            mode = parseInt(mode, 10);
+            cond = parseInt(cond, 10);
+            difficulty = parseInt(difficulty, 10);
+
+            this.model.gameStart(mode, cond, difficulty);
         },
 
         _onGameStart: function() {
@@ -42,7 +48,7 @@ define('view/main', ['backbone', 'jquery'], function(B, $) {
         },
 
         render: function() {
-
+            this.$el.slideDown(500);
         }
     });
 });
