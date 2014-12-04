@@ -138,6 +138,28 @@
                 }
             },
             copy: {
+                htaccess: {
+                    files: [{
+                        expand: true,
+                        nonull: true,
+                        cwd: 'src/',
+                        src: '.htaccess',
+                        dest: 'build/',
+                        flatten: true,
+                        filter: 'isFile'
+                    }]
+                },
+                manifest: {
+                    files: [{
+                        expand: true,
+                        nonull: true,
+                        cwd: 'src/',
+                        src: 'offline.appcache',
+                        dest: 'build/',
+                        flatten: true,
+                        filter: 'isFile'
+                    }]
+                },
                 json: {
                     files: [{
                         expand: true,
@@ -207,7 +229,7 @@
 
         //TODO image embed
         grunt.registerTask('build:static', [
-            'build:css', 'build:js', 'build:html', 'copy'
+            'build:css', 'build:js', 'build:html', 'copy:htaccess', 'copy:manifest', 'copy:json'
         ]);
 
         grunt.registerTask('build:js', [

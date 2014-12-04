@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# 2014-12-04
+
+CACHE:
+/index.html
+/json/person.json
+/css/styles.css
+/js/app.js
+
+NETWORK:
+*
+
+FALLBACK:
+/ /index.html
