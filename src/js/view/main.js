@@ -1,4 +1,4 @@
-define('view/main', ['jquery','view/template'], function($, BaseView) {
+define('view/main', ['jquery','view/template', 'view/pattern'], function($, BaseView, Pattern) {
     'use strict';
 
     return BaseView.extend({
@@ -58,6 +58,10 @@ define('view/main', ['jquery','view/template'], function($, BaseView) {
                     knownPercent: 30
                 }
             );
+
+            new Pattern({
+                el: this.$('.pattern')
+            });
         }
     });
 });

@@ -10,7 +10,7 @@ define('view/mask', ['backbone', 'jquery'], function(B, $) {
             var rules = {},
                 rand = Math.random();
             if (rand < 0.2) {
-                rules.filter = 'blur(2px)';
+                rules.filter = 'blur(3px)';
             } else if(rand < 0.3) {
                 rules.filter = 'invert(80%)';
             } else if(rand < 0.4) {
@@ -23,6 +23,8 @@ define('view/mask', ['backbone', 'jquery'], function(B, $) {
                 rules.filter = 'grayscale(100%)';
             } else if(rand < 0.8) {
                 rules.filter = 'opacity(70%)';
+            } else if(rand < 0.9) {
+                rules.filter = 'brightness(20%)';
             }
 
             rand = Math.random();

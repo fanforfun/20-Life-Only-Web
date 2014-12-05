@@ -4,6 +4,7 @@
 
     module.exports = function(grunt) {
         //TODO explode http://habrahabr.ru/post/215267/
+        //TODO auto prefixer
 
         //TODO version to js/css
         grunt.initConfig({
