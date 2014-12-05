@@ -26,6 +26,7 @@
         "requirejs-text": "latest",
         "requirejs-domready": "~2.0.1",
         "requirejs-plugins": "~1.0.2",
+        "mustache.js": "~0.8",
         "jquery": "latest",
         "backbone-amd": "latest",
         "underscore-amd": "latest",

@@ -5,6 +5,7 @@
     module.exports = function(grunt) {
         //TODO explode http://habrahabr.ru/post/215267/
 
+        //TODO version to js/css
         grunt.initConfig({
             pkg: grunt.file.readJSON('package.json'),
             concat: {

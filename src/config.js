@@ -5,7 +5,8 @@ require.config({
         jquery: '../vendor/jquery/dist/jquery.min',
         underscore: '../vendor/underscore-amd/underscore-min',
         backbone: '../vendor/backbone-amd/backbone-min',
-        velocity: '../vendor/velocity/jquery.velocity.min',
+        velocity: '../vendor/velocity/velocity',
+        mustache: '../vendor/mustache.js/mustache',
         es5shim: '../vendor/es5-shim/es5-shim'
     },
     shim: {

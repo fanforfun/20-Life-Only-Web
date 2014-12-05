@@ -16,13 +16,14 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             });
         },
 
-        getSession: function (condition, level) {
+        getSession: function (params) {
             var filtered = this.get('items').filter(function(item) {
-                    return item.priority  == condition;
+                    return item.priority  == params.cond;
                 }),
                 session = new Session({
                     items: filtered,
-                    level: level
+                    level: params.difficulty,
+                    screen: params.mode
                 });
 
             this.listenTo(session, 'game:over', this.gameOver);

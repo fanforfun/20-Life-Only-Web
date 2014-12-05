@@ -7,7 +7,8 @@ define('view/pattern', ['backbone', 'jquery'], function(B, $) {
 
     return B.View.extend({
         initialize: function() {
-            console.log('pattern');
+            var pattern = this.getRandom(maxPatterns);
+            console.log('pattern ' + pattern);
             this.currentPattern = this.getRandom(maxPatterns);
             this.render();
         },

@@ -40,19 +40,21 @@ body {
 .screen {
     width: 100%;
     height: 100%;
-    min-width: 1000px;
-    min-height: 600px;
 }
 
 .header {
     background-color: @color3;
     height: 20%;
+    position: relative;
 }
 h1 {
-    font-size: 4em;
+    font-size: 6vw;
     text-align: center;
     font-weight: bold;
     padding-top: 5px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .settings {
     background-color: @color2;
@@ -60,8 +62,8 @@ h1 {
     height: 40%;
 
     &_wrap {
-        width: 600px;
-        padding: 10vh 0 0;
+        width: 80%;
+        padding: 8vh 0 0;
         margin: 0 auto;
     }
     &_filter {
@@ -73,11 +75,12 @@ h1 {
 }
 .radio {
     &_element {
-        font-size: 1.4em;
+        font-size: 3vw;
         display: block;
         text-align: center;
         padding: 10px 10px;
         margin: 0 0 5px;
+        cursor: hand;
         cursor: pointer;
 
         &_checked {
@@ -94,26 +97,151 @@ h1 {
     padding-top: 10vh;
 
     .mode_start {
-        font-size: 1.6em;
-        margin: 0 20px;
+        font-size: 2.3vw;
+        margin: 0 1.3vw;
         border: 2px solid @color2;
         color: @color2;
+        line-height: 14vw;
     }
 }
 .button {
     padding: 10px 20px;
     border-radius: 6px;
+    cursor: hand;
     cursor: pointer;
 }
 
+.game__content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .face {
-    height: 30%;
-    margin-top: 10vh;
     background-color: @color1;
+    position: relative;
+    height: 50%;
+}
+.faces {
+    background-color: @color1;
+    position: relative;
+    height: 60%;
+    overflow: hidden;
+}
+.name {
+    background-color: @color2;
+    position: relative;
+    height: 40%;
 }
 .names {
-    height: 70%;
     background-color: @color2;
+    position: relative;
+    height: 50%;
+}
+
+.faces__list_wrap {
+    width: 100%;
+    position: absolute;
+    top: -600px;
+    text-align: center;
+}
+
+.faces__list {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+
+    .element {
+        display: inline-block;
+        cursor: hand;
+        cursor: pointer;
+        height: 9vw;
+        max-width: 9vw;
+        overflow: hidden;
+        font-size: 1.4vw;
+        text-align: center;
+
+        .img_face {
+            transform: scale(1, 1); // This is the enlarged size scale of the image.
+            transition-duration: 300ms;
+            transition-timing-function: ease-out;
+        }
+
+        &:hover .img_face {
+            transform: scale(1.7, 1.7); // This is the enlarged size scale of the image.
+            transition-duration: 300ms;
+            transition-timing-function: ease-out;
+        }
+
+        &.answered {
+            padding-top: 2.2vh;
+            background: @color3;
+            color: @color1;
+            -moz-transform: none !important;
+            -webkit-transform: none !important;
+            transform: none !important;
+            -moz-filter: none !important;
+            -webkit-filter: none !important;
+            filter: none !important;
+        }
+        &.incorrect {
+            background: @color2;
+            color: @color0;
+        }
+    }
+}
+
+.names__table {
+    width: 800px;
+    margin: 0 auto 0;
+
+    .element {
+        box-sizing: border-box;
+        width: 30%;
+        float: left;
+        padding: 3px 2px;
+        margin: 3px 5px;
+
+        &:hover {
+            background: @color1;
+            color: @color0;
+        }
+    }
+}
+
+.name_question {
+    font-size: 5vw;
+    text-align: center;
+    position: relative;
+    top: 40%;
+    color: @color1;
+}
+.skip {
+    color: @color0;
+    font-size: 3vw;
+    position: absolute;
+    right: 6vw;
+    top: 6vh;
+    cursor: hand;
+    cursor: pointer;
+    border-bottom: 1px dashed;
+
+    &:hover {
+        color: @color3;
+    }
+}
+
+.timer {
+    position: absolute;
+    bottom: -3vw;
+    width: 100%;
+    font-size: 7vh;
+    margin-top: -1vh;
+    text-align: center;
+}
+
+.img_face {
+    height: 9vw;
 }
 
 .pattern {
@@ -131,6 +259,9 @@ h1 {
 
 .hided {
     display: none;
+}
+.invisible {
+    visibility: hidden;
 }
 .clear {
     clear: both;

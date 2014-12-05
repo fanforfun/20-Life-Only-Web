@@ -1,7 +1,7 @@
-define('view/main', ['backbone', 'jquery'], function(B, $) {
+define('view/main', ['jquery','view/template'], function($, BaseView) {
     'use strict';
 
-    return B.View.extend({
+    return BaseView.extend({
         initialize: function() {
             console.log('main');
             this.listenTo(this.model, 'game:start', this._onGameStart);
@@ -44,11 +44,20 @@ define('view/main', ['backbone', 'jquery'], function(B, $) {
         },
 
         _onGameOver: function() {
-            this.$el.show();
+            //this.$el.show();
+            this.render();
         },
 
         render: function() {
             this.$el.slideDown(500);
+            this.renderTemplate(
+                this.$('.header__text'),
+                this.$('.header__template').text(),
+                {
+                    isProgressWell: false,
+                    knownPercent: 30
+                }
+            );
         }
     });
 });

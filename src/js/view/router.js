@@ -24,16 +24,12 @@ define('view/router', ['backbone', 'jquery',
         start: function(params) {
             var $el = this.$('.game-screen'),
                 mode = params.mode,
-                cond = params.cond,
-                difficulty = params.difficulty,
                 constr = {
                     el: $el,
-                    model: this.model.getSession(cond, difficulty)
+                    model: this.model.getSession(params)
                 };
 
             console.log('start', mode);
-
-            this.model.set('screen', mode);
             switch (mode) {
                 case 1 :
                     this.game = new NamesGame(constr);

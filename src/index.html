@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en-EN" manifest="offline.appcache">
+<!--manifest="offline.appcache"-->
+<html lang="en-EN" >
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,6 +14,9 @@
         <!--iphone fullscreen-->
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <!--android statusbar-->
+        <meta name="theme-color" content="#FF9900">
 
         <!--ie-->
         <meta http-equiv="imagetoolbar" content="no">
@@ -30,7 +34,15 @@
         </div>
         <div class="screen main-screen hided">
             <div class="header">
-                <h1>Кто все эти люди?</h1>
+                <h1 class="header__text"></h1>
+                <script class="template header__template" type="text/template">
+                    {{#isProgressWell}}
+                        Я знаю {{ knownPercent }} человек
+                    {{/isProgressWell}}
+                    {{^isProgressWell}}
+                        Кто все эти люди?
+                    {{/isProgressWell}}
+                </script>
             </div>
 
             <div class="settings">
@@ -58,17 +70,53 @@
 
         <div class="screen game-screen hided">
             <div class="screen game-screen-1 hided">
-                <div class="face">
-
-                </div>
-                <ul class="names pattern"></ul>
+                <script class="template game__template" type="text/template">
+                    <div class="face">
+                        1
+                    </div>
+                    <div class="names">
+                        <ul class="names__table">
+                            {{#answers}}
+                            <li class="name element" data-hash="{{hash}}">
+                                {{name}}
+                            </li>
+                            {{/answers}}
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </script>
+                <div class="game__content"></div>
             </div>
 
             <div class="screen game-screen-2 hided">
+                <script class="template" type="text/template">
+                </script>
+                <div class="game__content"></div>
             </div>
 
             <div class="screen game-screen-3 hided">
-
+                <script class="template game__template" type="text/template">
+                    <div class="faces pattern">
+                        <div class="faces__list_wrap">
+                            <ul class="faces__list">
+                                {{#questions}}
+                                    <li class="element" data-hash="{{hash}}">
+                                        <img draggable="false" title="Нашел!" class="img_face" src="{{image}}">
+                                    </li>
+                                {{/questions}}
+                            </ul>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="timer">{{timer}}</div>
+                    </div>
+                    <div class="name">
+                        {{#question}}
+                            <div class="name_question" data-id="{{id}}">{{name}}</div>
+                        {{/question}}
+                        <div class="skip">cдаюсь!</div>
+                    </div>
+                </script>
+                <div class="game__content"></div>
             </div>
         </div>
 
