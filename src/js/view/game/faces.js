@@ -55,7 +55,7 @@ define('view/game/faces', ['view/game'], function(Game) {
         },
 
         shakingFaces: function () {
-            if (!this.model) {
+            if (!this.model || !this.model.isPlaying()) {
                 return;
             }
             var me = this,
@@ -85,22 +85,25 @@ define('view/game/faces', ['view/game'], function(Game) {
                 $timer = me.$('.timer');
             this.interval = setInterval(function() {
                 var current = +(new Date()),
-                    last = time - current ;
+                    last = time - current,
+                    timeLast = (last / 1000).toFixed(1);
 
-                $timer.html((last / 1000).toFixed(1));
+                $timer.html(timeLast < 0.1 ? timeLast : '');
+
+                if (last <= 0) {
+                    console.log('time out!');
+                    clearInterval(me.interval);
+                    me.model.gameOver();
+                    return;
+                }
 
                 if (!isAnimated && last <= lastSecs * 1000) {
                     console.log('last ' + lastSecs + ' secs!');
                     $timer.stop().animate({
                         'font-size': '+=5vw',
                         'top': '-=2v'
-                    }, lastSecs * 1000);
+                    }, lastSecs * 1000, 'easeOutBounce');
                     isAnimated = true;
-                }
-
-                if (last <= 0) {
-                    me.model.gameOver();
-                    clearInterval(me.interval);
                 }
             }, 50);
         },
@@ -138,11 +141,14 @@ define('view/game/faces', ['view/game'], function(Game) {
         },
 
         showAnswer: function (params) {
-            var $correctOne;
-            $correctOne = this.$('[data-hash=' + params.current.hash + ']');
+            var current = params.current,
+                $correctOne = this.$('[data-hash=' + current.hash + ']');
+            $correctOne.find('.img_face').animate({
+                'opacity': 0.2
+            }, 700);
             $correctOne.addClass('answered');
             $correctOne.addClass(params.isCorrect ? 'correct' : 'incorrect');
-            $correctOne.html(params.current.name);
+            $correctOne.find('.name_answer').html(current.name);
         },
 
         showNew: function (current) {
@@ -163,7 +169,6 @@ define('view/game/faces', ['view/game'], function(Game) {
             $el.data('id', newOne.id);
             $el.html(newOne.name);
         },
-
 
 
         render: function() {

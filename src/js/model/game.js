@@ -47,7 +47,7 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
                     screen: params.mode
                 });
 
-            this.listenTo(session, 'game:over', this.gameOver);
+            this.listenTo(session, 'game:end', this.gameOver);
             this.session = session;
 
             return session;

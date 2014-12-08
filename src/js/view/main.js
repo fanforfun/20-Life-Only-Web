@@ -40,6 +40,8 @@ define('view/main', ['jquery','view/template', 'view/pattern'], function($, Base
         },
 
         _onGameStart: function() {
+            this.pattern.destroy();
+            this.pattern = null;
             this.$el.hide();
         },
 
@@ -59,7 +61,7 @@ define('view/main', ['jquery','view/template', 'view/pattern'], function($, Base
                 }
             );
 
-            new Pattern({
+            this.pattern = new Pattern({
                 el: this.$('.pattern')
             });
         }

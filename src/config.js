@@ -8,7 +8,8 @@ require.config({
         velocity: '../vendor/velocity/velocity',
         mustache: '../vendor/mustache.js/mustache',
         es5shim: '../vendor/es5-shim/es5-shim',
-        bgfix: '../vendor/jquery-backgroundfix/jquery-backgroundfix'
+        bgfix: '../vendor/jquery-backgroundfix/jquery-backgroundfix',
+        easing: '../vendor/jquery-easing-original/jquery.easing.1.3'
     },
     shim: {
         jquery: {

@@ -50,10 +50,15 @@ define('view/pattern', ['backbone', 'jquery', 'bgfix'], function(B, $) {
             );
         },
 
+        stop: function () {
+            console.log('pattern stop');
+            this.$el.stop();
+        },
+
         destroy: function() {
             console.log('pattern destroy');
+            this.stop();
             this.$el.removeClass('pattern-' + this.currentPattern);
-            this.$el.stop();
 
             this.unbind();
             this.stopListening();

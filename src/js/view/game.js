@@ -4,6 +4,7 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
     return BaseView.extend({
         initialize: function() {
             this.masks = [];
+            this.listenTo(this.model, 'game:over', this.onGameOver);
             this.render();
         },
 
@@ -47,13 +48,21 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
             this.$el.show();
         },
 
+        onGameOver: function () {
+            console.log('game view over');
+            if (this.pattern) {
+                this.pattern.stop();
+            }
+        },
+
         destroy: function() {
             this.$('.game-screen-' + this.model.get('screen')).hide();
             this.$el.hide();
-            if ( this.pattern) {
+            if (this.pattern) {
                 this.pattern.destroy();
                 this.pattern = null;
             }
+            console.log('destroy game');
             this.model = null;
 
             this.masks.forEach(function(mask) {

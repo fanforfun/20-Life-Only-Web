@@ -160,11 +160,18 @@ h1 {
         overflow: hidden;
         font-size: 1.4vw;
         text-align: center;
+        position: relative;
 
         .img_face {
             transform: scale(1, 1); // This is the enlarged size scale of the image.
             transition-duration: 300ms;
             transition-timing-function: ease-out;
+        }
+        .name_answer {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            padding-top: 2.2vh;
         }
 
         &:hover .img_face {
@@ -174,11 +181,15 @@ h1 {
         }
 
         &.answered {
-            padding-top: 2.2vh;
+            .img_face {
+                transform: scale(1, 1);
+                transition-duration: 0;
+            }
             background: @color3;
             color: @color1;
             transform: none;
             filter: none;
+            opacity: 1;
         }
         &.incorrect {
             background: @color2;
@@ -272,7 +283,7 @@ h1 {
     filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR tableValues=\'1 .33 .33\' type=\'table\'/><feFuncG tableValues=\'.33 1 .33\' type=\'table\'/><feFuncB tableValues=\'.33 .33 1\' type=\'table\'/></feComponentTransfer></filter></svg>#saturate")
 }
 .filter-5 {
-    filter: hue-rotate(70deg);
+    filter: hue-rotate(170deg);
     filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'hue-rotate\'><feComponentTransfer><feFuncR type=\'table\' tableValues=\'1 0\'/><feFuncG type=\'table\' tableValues=\'1 0\'/><feFuncB type=\'table\' tableValues=\'1 0\'/></feComponentTransfer></filter></svg>#hue-rotate")
 }
 .filter-6 {
@@ -283,7 +294,7 @@ h1 {
     opacity: 0.5;
 }
 .filter-8 {
-    filter: brightness(10%);
+    filter: brightness(20%);
     filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'brightness\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'10\'/><feFuncG type=\'linear\' slope=\'10\'/><feFuncB type=\'linear\' slope=\'10\'/></feComponentTransfer></filter></svg>#brightness")
 }
 .filter-9 {

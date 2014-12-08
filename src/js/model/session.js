@@ -3,6 +3,8 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
 
     return B.Model.extend({
         initialize: function() {
+            this.set('playing', true);
+
             this.set('answers', []);
             var items = this.get('items').slice(0),
                 questions,
@@ -45,7 +47,7 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                 personNumbers = this.get('items').length;
             switch(this.get('level')) {
                 case 3:
-                    secPerPerson = 2;
+                    secPerPerson = 0.1;
                     break;
                 case 2:
                     secPerPerson = 5;
@@ -156,18 +158,28 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
             return isCorrect;
         },
 
+        isPlaying: function() {
+            return this.get('playing');
+        },
+
         gameOver: function() {
+            console.log('session over');
             var me = this;
-            console.log('session game over');
+            me.set('playing', false);
+
+            console.log('save questions?');
             this.get('questions').forEach(function(current) {
                 me.saveAnswer(current, false);
-                //me.trigger('answer', {
-                //    current: current,
-                //    isCorrect: false
-                //});
+                me.trigger('answer', {
+                    current: current,
+                    isCorrect: false
+                });
             });
 
-            console.log(this.getAnswers());
+            this.trigger('game:over');
+        },
+
+        gameEnd: function() {
             this.trigger('game:over');
         }
     });
