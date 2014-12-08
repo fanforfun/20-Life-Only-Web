@@ -176,11 +176,18 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                 });
             });
 
-            this.trigger('game:over');
+            this.trigger('game:over', this.getAnswers());
         },
 
         gameEnd: function() {
-            this.trigger('game:over');
+            this.trigger('game:end');
+        },
+
+        destroy: function() {
+            this.set('questions', []);
+            this.set('items', []);
+            this.set('answers', []);
+            this._super("destroy");
         }
     });
 });

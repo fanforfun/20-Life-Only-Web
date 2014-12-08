@@ -1,9 +1,10 @@
-define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], function(B, $, Session) {
+define('model/game', ['backbone', 'jquery', 'model/session', 'model/stats', 'es5shim'], function(B, $, Session, Stats) {
     'use strict';
 
     return B.Model.extend({
         initialize: function() {
-
+            this.stats = new Stats();
+            this.listenTo(this.stats, 'menu:show', this.onMenuShow);
         },
 
         url: function() {
@@ -14,6 +15,39 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             this.fetch({
                 success: _.bind(this.onSuccess, this)
             });
+        },
+
+        getSettings: function() {
+            var settings = this.stats.getSettings();
+            console.log('load settings', settings);
+            return settings;
+        },
+
+        getStats: function() {
+            var all = this.get('items'),
+                known = this.stats.getKnown(),
+                unknown = this.stats.getUnknown();
+
+            return {
+                aaa: {
+                    correct: known.filter(this.getFilter(1)).length,
+                    all: all.filter(this.getFilter(1)).length
+                },
+                aa: {
+                    correct: known.filter(this.getFilter(2)).length,
+                    all: all.filter(this.getFilter(2)).length
+                },
+                all: all.length,
+                incorrect: unknown.length,
+                correct: known.length
+            }
+        },
+
+        saveSetting: function(key, newValue) {
+            var settings = this.stats.getSettings();
+            settings[key] = newValue;
+            this.stats.saveSettings(settings);
+            console.log('save settings', settings);
         },
 
         getFilter: function(cond) {
@@ -31,8 +65,14 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
                     break;
                 default:
                 case 3:
+                    //top 30 of unknown
+                    var count = 0;
                     return function(item) {
-                        return item.priority == params.cond;
+                        if (item.score >= 0) {
+                            return false;
+                        }
+                        count++;
+                        return count <= 30;
                     };
                     break;
             }
@@ -47,6 +87,7 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
                     screen: params.mode
                 });
 
+            this.listenTo(session, 'game:over', this.showResults);
             this.listenTo(session, 'game:end', this.gameOver);
             this.session = session;
 
@@ -54,6 +95,17 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
         },
 
         onSuccess: function() {
+            var stats = this.stats.getStats();
+            //migrate score
+            this.get('items').forEach(function(item) {
+                var finded = stats.filter(function (find) {
+                    return find.name == item.name;
+                });
+                if (finded.length) {
+                    item.score = finded[0].score;
+                }
+            });
+
             this.trigger('data:loaded');
         },
 
@@ -64,6 +116,16 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
                 cond: cond,
                 difficulty: difficulty
             });
+        },
+
+        showResults: function (answers) {
+            this.stats.setResults(answers);
+
+            this.trigger('results:show', this.stats);
+        },
+
+        onMenuShow: function () {
+            this.session.gameEnd();
         },
 
         gameOver: function() {

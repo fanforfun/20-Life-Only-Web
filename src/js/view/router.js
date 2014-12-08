@@ -2,12 +2,14 @@ define('view/router', ['backbone', 'jquery',
                 'view/main',
                 'view/game/names',
                 'view/game/positions',
-                'view/game/faces'
+                'view/game/faces',
+                'view/results'
         ], function(B, $,
                 Main,
                 NamesGame,
                 PositionsGame,
-                FacesGame
+                FacesGame,
+                Results
     ) {
     'use strict';
 
@@ -16,6 +18,7 @@ define('view/router', ['backbone', 'jquery',
             this.listenTo(this.model, 'game:start', this.start);
             this.listenTo(this.model, 'game:over', this.gameOver);
             this.listenTo(this.model, 'data:loaded', this.render);
+            this.listenTo(this.model, 'results:show', this.showResults);
 
             console.log('router');
             this.model.loadPersons();
@@ -46,6 +49,10 @@ define('view/router', ['backbone', 'jquery',
         },
 
         gameOver: function() {
+            this.results.destroy();
+            delete this.results;
+            this.results = null;
+
             this.game.destroy();
             delete this.game;
             this.game = null;
@@ -57,6 +64,14 @@ define('view/router', ['backbone', 'jquery',
             this.main = new Main({
                 el: $el,
                 model: this.model
+            });
+        },
+
+        showResults: function (statsModel) {
+            var $el = this.$('.results-screen');
+            this.results = new Results({
+                el: $el,
+                model: statsModel
             });
         }
     });

@@ -9,6 +9,7 @@ define('view/game/faces', ['view/game'], function(Game) {
             this.listenTo(this.model, 'correct', this.onCorrect);
             this.listenTo(this.model, 'incorrect', this.onIncorrect);
             this.listenTo(this.model, 'answer', this.showAnswer);
+            this.listenTo(this.model, 'game:over', this.onGameOver);
 
             console.log('game faces');
 
@@ -88,9 +89,9 @@ define('view/game/faces', ['view/game'], function(Game) {
                     last = time - current,
                     timeLast = (last / 1000).toFixed(1);
 
-                $timer.html(timeLast < 0.1 ? timeLast : '');
+                $timer.html(timeLast < 0.1 ? '' : timeLast);
 
-                if (last <= 0) {
+                if (last <= 0 || !me.model.isPlaying()) {
                     console.log('time out!');
                     clearInterval(me.interval);
                     me.model.gameOver();
@@ -106,6 +107,12 @@ define('view/game/faces', ['view/game'], function(Game) {
                     isAnimated = true;
                 }
             }, 50);
+        },
+
+        onGameOver: function () {
+            this.$('.name_question').hide();
+            this.$('.skip').hide();
+            this._super('onGameOver');
         },
 
         onSelectElement: function(e) {

@@ -252,7 +252,7 @@
         ]);
 
         grunt.registerTask('build', [
-            'lint',
+            //'lint',
             'build:static'
         ]);
 

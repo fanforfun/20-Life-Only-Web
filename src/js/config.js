@@ -9,7 +9,8 @@ require.config({
         mustache: '../vendor/mustache.js/mustache',
         es5shim: '../vendor/es5-shim/es5-shim',
         bgfix: '../vendor/jquery-backgroundfix/jquery-backgroundfix',
-        easing: '../vendor/jquery-easing-original/jquery.easing.1.3'
+        easing: '../vendor/jquery-easing-original/jquery.easing.1.3',
+        store: '../vendor/store2/dist/store2'
     },
     shim: {
         jquery: {

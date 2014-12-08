@@ -53,6 +53,9 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
             if (this.pattern) {
                 this.pattern.stop();
             }
+
+            this.unbind();
+            this.stopListening();
         },
 
         destroy: function() {
