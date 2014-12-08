@@ -18,10 +18,8 @@
     "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
 
     "requireSpaceBeforeBinaryOperators": true,
-    "requireSpaceBeforePostfixUnaryOperators": true,
     "requireSpacesInConditionalExpression": true,
     "requireSpaceAfterBinaryOperators": true,
-    "requireSpaceAfterPrefixUnaryOperators": true,
 
     "requireDotNotation": true,
     "requireParenthesesAroundIIFE": true,

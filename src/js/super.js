@@ -1,6 +1,6 @@
+// jshint ignore: start
 define('super', ['backbone'], function(B) {
     'use strict';
-
 
     // The super method takes two parameters: a method name
     // and an array of arguments to pass to the overridden method.
@@ -32,5 +32,4 @@ define('super', ['backbone'], function(B) {
     _.each(["Model", "Collection", "View", "Router"], function(klass) {
         B[klass].prototype._super = _super;
     });
-
 });

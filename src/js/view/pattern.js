@@ -28,7 +28,7 @@ define('view/pattern', ['backbone', 'jquery', 'bgfix'], function(B, $) {
             this.animate();
         },
 
-        getDiff: function (px, distortionShare) {
+        getDiff: function(px, distortionShare) {
             var offset = Math.floor(px * distortionShare / 2);
             return this.getRandom(offset) + px;
         },
@@ -50,7 +50,7 @@ define('view/pattern', ['backbone', 'jquery', 'bgfix'], function(B, $) {
             );
         },
 
-        stop: function () {
+        stop: function() {
             console.log('pattern stop');
             this.$el.stop();
         },

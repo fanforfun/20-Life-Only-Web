@@ -18,7 +18,7 @@ define('view/router', ['backbone', 'jquery',
             this.listenTo(this.model, 'data:loaded', this.render);
 
             console.log('router');
-            this.model.loadPersons()
+            this.model.loadPersons();
         },
 
         start: function(params) {

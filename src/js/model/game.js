@@ -10,15 +10,15 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             return 'json/person.json';
         },
 
-        loadPersons: function () {
+        loadPersons: function() {
             this.fetch({
                 success: _.bind(this.onSuccess, this)
             });
         },
 
-        getFilter: function (cond) {
-
-            switch(cond) {
+        getFilter: function(cond) {
+            /*jshint -W027*/
+            switch (cond) {
                 case 1:
                     return function(item) {
                         return item.priority <= 2;
@@ -38,7 +38,7 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             }
         },
 
-        getSession: function (params) {
+        getSession: function(params) {
             var filter = this.getFilter(params.cond),
                 filtered = this.get('items').filter(filter),
                 session = new Session({
@@ -53,7 +53,7 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             return session;
         },
 
-        onSuccess: function () {
+        onSuccess: function() {
             this.trigger('data:loaded');
         },
 

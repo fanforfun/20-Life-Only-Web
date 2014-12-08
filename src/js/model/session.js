@@ -26,26 +26,26 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
             console.log('init session');
         },
 
-        getSpeedKoef: function () {
+        getSpeedKoef: function() {
             return Math.pow(4 - this.get('level'), 2);
         },
 
-        isShaking: function () {
+        isShaking: function() {
             return this.get('level') >= 2;
         },
 
-        isPatterning: function () {
+        isPatterning: function() {
             return this.get('level') >= 2;
         },
 
-        isMasking: function () {
+        isMasking: function() {
             return this.get('level') >= 3;
         },
 
-        getTimer: function () {
+        getTimer: function() {
             var secPerPerson,
                 personNumbers = this.get('items').length;
-            switch(this.get('level')) {
+            switch (this.get('level')) {
                 case 3:
                     secPerPerson = 0.1;
                     break;
@@ -61,7 +61,7 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
             return secPerPerson * personNumbers * 1000;
         },
 
-        randHash: function () {
+        randHash: function() {
             return Math.random().toString(36).substr(2);
         },
 
@@ -99,7 +99,7 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
             return this.get('answers');
         },
 
-        saveAnswer: function (current, isCorrect) {
+        saveAnswer: function(current, isCorrect) {
             var answers = this.getAnswers();
             answers.push(
                 $.extend(true, {
@@ -149,7 +149,7 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                 current: current,
                 isCorrect: isCorrect
             });
-            if(isCorrect) {
+            if (isCorrect) {
                 this.trigger('correct', current);
             } else {
                 this.trigger('incorrect', current);

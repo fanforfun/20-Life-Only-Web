@@ -8,7 +8,7 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
             this.render();
         },
 
-        renderMain: function ($el) {
+        renderMain: function($el) {
             this.renderTemplate(
                 $el.find('.game__content'),
                 $el.find('.game__template').text(),
@@ -48,7 +48,7 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
             this.$el.show();
         },
 
-        onGameOver: function () {
+        onGameOver: function() {
             console.log('game view over');
             if (this.pattern) {
                 this.pattern.stop();

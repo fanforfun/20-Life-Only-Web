@@ -22,7 +22,7 @@ define('view/game/faces', ['view/game'], function(Game) {
         /**
          * @override
          */
-        renderMain: function ($el) {
+        renderMain: function($el) {
             var me = this;
             console.log('render faces');
 
@@ -54,7 +54,7 @@ define('view/game/faces', ['view/game'], function(Game) {
             this.startTimer();
         },
 
-        shakingFaces: function () {
+        shakingFaces: function() {
             if (!this.model || !this.model.isPlaying()) {
                 return;
             }
@@ -64,20 +64,20 @@ define('view/game/faces', ['view/game'], function(Game) {
                 maxHeight = Math.ceil($someEl.height() * 0.4),
                 randX = this.model.getRandom(maxWidth),
                 randY = this.model.getRandom(maxHeight),
-                shiftY = this.top + randY - maxHeight/ 2,
-                shiftX = randX - maxWidth/ 2,
+                shiftY = this.top + randY - maxHeight / 2,
+                shiftX = randX - maxWidth / 2,
                 time = 600 + this.model.getRandom(8) * 100 * this.model.getSpeedKoef();
 
             $someEl.stop().animate({
                 top: shiftY + 'px',
                 left: shiftX + 'px'
             }, Math.ceil(time),
-            function () {
+            function() {
                 me.shakingFaces();
             });
         },
 
-        startTimer: function () {
+        startTimer: function() {
             var me = this,
                 time = +(new Date()) + this.model.getTimer(),
                 isAnimated = false,
@@ -101,7 +101,7 @@ define('view/game/faces', ['view/game'], function(Game) {
                     console.log('last ' + lastSecs + ' secs!');
                     $timer.stop().animate({
                         'font-size': '+=5vw',
-                        'top': '-=2v'
+                        top: '-=2v'
                     }, lastSecs * 1000, 'easeOutBounce');
                     isAnimated = true;
                 }
@@ -140,18 +140,18 @@ define('view/game/faces', ['view/game'], function(Game) {
             this.showNew(current);
         },
 
-        showAnswer: function (params) {
+        showAnswer: function(params) {
             var current = params.current,
                 $correctOne = this.$('[data-hash=' + current.hash + ']');
             $correctOne.find('.img_face').animate({
-                'opacity': 0.2
+                opacity: 0.2
             }, 700);
             $correctOne.addClass('answered');
             $correctOne.addClass(params.isCorrect ? 'correct' : 'incorrect');
             $correctOne.find('.name_answer').html(current.name);
         },
 
-        showNew: function (current) {
+        showNew: function(current) {
             this.model.getNext();
             if (!this.model) {
                 return;
@@ -163,13 +163,12 @@ define('view/game/faces', ['view/game'], function(Game) {
                 newOne = {
                     id: '',
                     name: ''
-                }
+                };
             }
 
             $el.data('id', newOne.id);
             $el.html(newOne.name);
         },
-
 
         render: function() {
             console.log('render names');
@@ -177,7 +176,7 @@ define('view/game/faces', ['view/game'], function(Game) {
         },
 
         destroy: function() {
-            if(this.interval) {
+            if (this.interval) {
                 clearInterval(this.interval);
             }
             this._super("destroy");

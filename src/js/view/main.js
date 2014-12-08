@@ -1,4 +1,4 @@
-define('view/main', ['jquery','view/template', 'view/pattern'], function($, BaseView, Pattern) {
+define('view/main', ['jquery', 'view/template', 'view/pattern'], function($, BaseView, Pattern) {
     'use strict';
 
     return BaseView.extend({

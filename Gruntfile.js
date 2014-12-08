@@ -112,7 +112,7 @@
                     options: {
                         waitSeconds : 0,
                         baseUrl: 'src/js',
-                        mainConfigFile:'./src/config.js',
+                        mainConfigFile:'./src/js/config.js',
                         out: 'build/js/app.js',
                         //TODO ret back
                         //optimize: 'uglify2',
@@ -252,7 +252,7 @@
         ]);
 
         grunt.registerTask('build', [
-            //'lint',
+            'lint',
             'build:static'
         ]);
 
