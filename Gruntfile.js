@@ -15,8 +15,8 @@
                         separator: ''
                     },
                     src: ['src/vendor/HTML5-Reset/assets/css/reset.css', '<%= less.assets.prepared %>'],
-                    dest: 'build/css/styles.less~',
-                    build: 'build/css/styles.css'
+                    dest: 'build/css/styles.css~~~~',
+                    build: 'build/css/styles.css~~~~'
                 }
             },
             clean: {
@@ -42,7 +42,7 @@
                         banner: '/*! <%= pkg.fullname %> <%= pkg.version %>, <%= grunt.template.today("dd-mm-yyyy") %> */\n'
                     },
                     files: {
-                        '<%= concat.css.build %>': ['<%= concat.css.dest %>']
+                        'build/css/styles.css': ['<%= autoprefixer.css.dest %>']
                     }
                 }
             },
@@ -84,6 +84,17 @@
                 },
                 strict: {
                     src: ['<%= less.assets.prepared %>']
+                }
+            },
+            autoprefixer: {
+                options: {
+                    browsers: ['> 1%', 'last 5 versions', 'Firefox > 20', 'Opera 12.1'],
+                    remove: false
+                },
+                css: {
+                    src: '<%= concat.css.build %>',
+
+                    dest: 'build/css/styles.css~~~~~'
                 }
             },
             imagemin: {
@@ -207,6 +218,8 @@
         grunt.loadNpmTasks('grunt-contrib-concat');
         grunt.loadNpmTasks('grunt-contrib-csslint');
         grunt.loadNpmTasks('grunt-contrib-cssmin');
+        grunt.loadNpmTasks('grunt-autoprefixer');
+
         grunt.loadNpmTasks('grunt-contrib-htmlmin');
         grunt.loadNpmTasks('grunt-contrib-imagemin');
         grunt.loadNpmTasks('grunt-contrib-less');
@@ -218,7 +231,7 @@
         ]);
 
         grunt.registerTask('build:css', [
-            'less', 'csslint', 'concat', 'cssmin'
+            'less', 'csslint', 'concat', 'autoprefixer:css', 'cssmin'
         ]);
 
         grunt.registerTask('build:html', [

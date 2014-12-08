@@ -87,12 +87,13 @@ define('view/game/faces', ['view/game'], function(Game) {
                 var current = +(new Date()),
                     last = time - current ;
 
-                $timer.html((last / 1000).toFixed(0));
+                $timer.html((last / 1000).toFixed(1));
 
                 if (!isAnimated && last <= lastSecs * 1000) {
                     console.log('last ' + lastSecs + ' secs!');
                     $timer.stop().animate({
-                        'font-size': '+=5vw'
+                        'font-size': '+=5vw',
+                        'top': '-=2v'
                     }, lastSecs * 1000);
                     isAnimated = true;
                 }

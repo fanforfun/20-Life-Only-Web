@@ -177,12 +177,8 @@ h1 {
             padding-top: 2.2vh;
             background: @color3;
             color: @color1;
-            -moz-transform: none !important;
-            -webkit-transform: none !important;
-            transform: none !important;
-            -moz-filter: none !important;
-            -webkit-filter: none !important;
-            filter: none !important;
+            transform: none;
+            filter: none;
         }
         &.incorrect {
             background: @color2;
@@ -257,7 +253,52 @@ h1 {
 .generate-patterns(2);
 
 .pattern-person {
-    background-image: data-uri('../img/pattern-persons.png') !important;
+    background-image: data-uri('../img/pattern-persons.png');
+}
+
+.filter-1 {
+    filter: blur(3px);
+    filter: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQoJPGZpbHRlciBpZD0iYmx1ciI+DQoJCTxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjMiIC8+DQoJPC9maWx0ZXI+DQo8L3N2Zz4=#blur');
+}
+.filter-2 {
+    filter: invert(80%);
+    filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'invert\'><feComponentTransfer><feFuncR type=\'table\' tableValues=\'1 0\'/><feFuncG type=\'table\' tableValues=\'1 0\'/><feFuncB type=\'table\' tableValues=\'1 0\'/></feComponentTransfer></filter></svg>#invert")
+}
+.filter-3 {
+    filter: sepia(100%);
+}
+.filter-4 {
+    filter: saturate(140%);
+    filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR tableValues=\'1 .33 .33\' type=\'table\'/><feFuncG tableValues=\'.33 1 .33\' type=\'table\'/><feFuncB tableValues=\'.33 .33 1\' type=\'table\'/></feComponentTransfer></filter></svg>#saturate")
+}
+.filter-5 {
+    filter: hue-rotate(70deg);
+    filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'hue-rotate\'><feComponentTransfer><feFuncR type=\'table\' tableValues=\'1 0\'/><feFuncG type=\'table\' tableValues=\'1 0\'/><feFuncB type=\'table\' tableValues=\'1 0\'/></feComponentTransfer></filter></svg>#hue-rotate")
+}
+.filter-6 {
+    filter: grayscale(100%);
+    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+}
+.filter-7 {
+    opacity: 0.5;
+}
+.filter-8 {
+    filter: brightness(10%);
+    filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'brightness\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'10\'/><feFuncG type=\'linear\' slope=\'10\'/><feFuncB type=\'linear\' slope=\'10\'/></feComponentTransfer></filter></svg>#brightness")
+}
+.filter-9 {
+    filter: contrast(50%);
+    filter: url("data:image/svg+xml;utf8,<svg version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'contrast\'><feGaussianBlur stdDeviation=\'0.5\'/><feComponentTransfer><feFuncR type=\'discrete\' tableValues=\'0 .5 1 1\'/><feFuncG type=\'discrete\' tableValues=\'0 .5 1\'/><feFuncB type=\'discrete\' tableValues=\'0\'/></feComponentTransfer></filter></svg>#contrast");
+}
+
+.rotate-1 {
+    transform: rotate(90deg);
+}
+.rotate-2 {
+    transform: rotate(180deg);
+}
+.rotate-3 {
+    transform: rotate(270deg);
 }
 
 .hided {

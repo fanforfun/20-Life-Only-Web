@@ -3,7 +3,7 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
 
     return BaseView.extend({
         initialize: function() {
-
+            this.masks = [];
             this.render();
         },
 
@@ -36,9 +36,11 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
 
             if (this.model.isMasking()) {
                 this.$('.img_face').each(function(key, item) {
-                    new Mask({
-                        el: $(item)
-                    });
+                    me.masks.push(
+                        new Mask({
+                            el: $(item)
+                        })
+                    );
                 });
             }
 
@@ -53,6 +55,11 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
                 this.pattern = null;
             }
             this.model = null;
+
+            this.masks.forEach(function(mask) {
+                mask.destroy();
+            });
+            this.masks = [];
 
             this.unbind();
             this.stopListening();

@@ -16,10 +16,31 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'es5shim'], functio
             });
         },
 
+        getFilter: function (cond) {
+
+            switch(cond) {
+                case 1:
+                    return function(item) {
+                        return item.priority <= 2;
+                    };
+                    break;
+                case 2:
+                    return function(item) {
+                        return item.priority == 3;
+                    };
+                    break;
+                default:
+                case 3:
+                    return function(item) {
+                        return item.priority == params.cond;
+                    };
+                    break;
+            }
+        },
+
         getSession: function (params) {
-            var filtered = this.get('items').filter(function(item) {
-                    return item.priority  == params.cond;
-                }),
+            var filter = this.getFilter(params.cond),
+                filtered = this.get('items').filter(filter),
                 session = new Session({
                     items: filtered,
                     level: params.difficulty,

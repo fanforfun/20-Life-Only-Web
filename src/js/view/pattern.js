@@ -1,15 +1,16 @@
-define('view/pattern', ['backbone', 'jquery'], function(B, $) {
+define('view/pattern', ['backbone', 'jquery', 'bgfix'], function(B, $) {
     'use strict';
 
     var maxPatterns = 2,
         pxHorizontalInSecond = 40,
-        pxVerticalInSecond = 80;
+        pxVerticalInSecond = 40;
 
     return B.View.extend({
         initialize: function() {
             var pattern = this.getRandom(maxPatterns);
             console.log('pattern ' + pattern);
             this.currentPattern = this.getRandom(maxPatterns);
+
             this.render();
         },
 
@@ -19,9 +20,9 @@ define('view/pattern', ['backbone', 'jquery'], function(B, $) {
 
         render: function() {
             this.$el.css({
-                'background-position-y': 0,
-                'background-position-x': 0
+                'background-position': '0 0'
             });
+            this.posY = 0;
             this.$el.addClass('pattern-' + this.currentPattern);
 
             this.animate();
@@ -29,18 +30,17 @@ define('view/pattern', ['backbone', 'jquery'], function(B, $) {
 
         getDiff: function (px, distortionShare) {
             var offset = Math.floor(px * distortionShare / 2);
-            return this.getRandom(offset) - offset + px;
+            return this.getRandom(offset) + px;
         },
 
         animate: function() {
-            var me = this,
-                xDiff = me.getDiff(pxHorizontalInSecond, 1),
-                yDiff = me.getDiff(pxVerticalInSecond, 0.3);
+            var me = this;
+
+            this.posY += me.getDiff(pxVerticalInSecond, 0.3);
 
             this.$el.animate(
                 {
-                    'background-position-x': (xDiff >= 0 ? '+' : '-') + '=' + xDiff,
-                    'background-position-y': (yDiff >= 0 ? '+' : '-') + '=' + yDiff
+                    'background-position': '0 ' + this.posY + 'px'
                 },
                 1000,
                 'linear',
@@ -51,6 +51,7 @@ define('view/pattern', ['backbone', 'jquery'], function(B, $) {
         },
 
         destroy: function() {
+            console.log('pattern destroy');
             this.$el.removeClass('pattern-' + this.currentPattern);
             this.$el.stop();
 

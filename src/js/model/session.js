@@ -29,11 +29,11 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
         },
 
         isShaking: function () {
-            return this.get('level') >= 1;
+            return this.get('level') >= 2;
         },
 
         isPatterning: function () {
-            return this.get('level') >= 3;
+            return this.get('level') >= 2;
         },
 
         isMasking: function () {

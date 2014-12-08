@@ -7,7 +7,8 @@ require.config({
         backbone: '../vendor/backbone-amd/backbone-min',
         velocity: '../vendor/velocity/velocity',
         mustache: '../vendor/mustache.js/mustache',
-        es5shim: '../vendor/es5-shim/es5-shim'
+        es5shim: '../vendor/es5-shim/es5-shim',
+        bgfix: '../vendor/jquery-backgroundfix/jquery-backgroundfix'
     },
     shim: {
         jquery: {
