@@ -3,6 +3,34 @@
 @color2: #7014CC;
 @color3: #19FF65;
 
+@font-face {
+    font-family: "SawRegular";
+    src: data-uri("../fonts/SawRegular/SawRegular.eot");
+    src: data-uri("../fonts/SawRegular/SawRegular.eot") format("embedded-opentype"),
+        data-uri("../fonts/SawRegular/SawRegular.woff") format("woff"),
+        data-uri("../fonts/SawRegular/SawRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "ArabicRegular";
+    src: data-uri("../fonts/ArabicRegular/ArabicRegular.eot");
+    src: data-uri("../fonts/ArabicRegular/ArabicRegular.eot") format("embedded-opentype"),
+    data-uri("../fonts/ArabicRegular/ArabicRegular.woff") format("woff"),
+    data-uri("../fonts/ArabicRegular/ArabicRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+@font-face {
+    font-family: "BoblicRegular";
+    src: data-uri("../fonts/BoblicRegular/BoblicRegular.eot");
+    src: data-uri("../fonts/BoblicRegular/BoblicRegular.eot") format("embedded-opentype"),
+        data-uri("../fonts/BoblicRegular/BoblicRegular.woff") format("woff"),
+        data-uri("../fonts/BoblicRegular/BoblicRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
 
 html {
   width: 100%;
@@ -19,11 +47,17 @@ html, body {
 body {
   position: relative;
   font-size: 11pt;
-  font-family: "Segoe WP";
+  font-family: "BoblicRegular", Arial, sans-serif;
   letter-spacing: 0.02em;
   background-color: #000000;
   color: #ffffff;
   overflow: hidden;
+}
+.level-3 {
+    font-family: "ArabicRegular", "SawRegular", Arial, sans-serif;
+}
+.moving {
+    font-family: Arial, sans-serif;
 }
 
 .overlay {
@@ -48,6 +82,7 @@ body {
     position: relative;
 }
 h1 {
+    font-family: "SawRegular", Arial, sans-serif;
     font-size: 6vw;
     text-align: center;
     font-weight: bold;

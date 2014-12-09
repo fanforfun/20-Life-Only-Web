@@ -86,7 +86,7 @@ define('view/main', ['jquery', 'view/template', 'view/pattern', 'underscore'], f
                 };
                 params.isAllKnown = (params.known == params.all);
                 params.isProgressWell = (params.known > 9);
-                params.isFifty = params.known > 40;
+                params.isFifty = params.known > 40; //TODO in model
                 params.isHardcore = false;
             }
 

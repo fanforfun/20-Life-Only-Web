@@ -3,6 +3,7 @@ define('view/results', ['jquery', 'view/template', 'view/pattern', 'underscore']
 
     return BaseView.extend({
         initialize: function() {
+            this.isShowed = false;
             this.render();
         },
 
@@ -11,8 +12,9 @@ define('view/results', ['jquery', 'view/template', 'view/pattern', 'underscore']
         },
 
         onClick: function () {
-            this.model.close();
-
+            if (!this.isShowed) {
+                return false;
+            }
             this.destroy();
         },
 
@@ -22,7 +24,7 @@ define('view/results', ['jquery', 'view/template', 'view/pattern', 'underscore']
 
             me.$el.show();
             console.log('results!');
-            this.$('.results__overlay').animate({
+            this.$('.results__overlay').stop().animate({
                     opacity: 0.9
                 }, 1300,
                 function () {
@@ -36,22 +38,27 @@ define('view/results', ['jquery', 'view/template', 'view/pattern', 'underscore']
                             all: me.model.getAnswerNumbers()
                         }
                     );
+
+                    me.isShowed = true;
                 }
             );
         },
 
         destroy: function() {
+            console.log('destroy results');
             var me = this;
-            this.$('.results__overlay').animate({
+            this.$('.results__content').stop().animate({
                 opacity: 0
             }, 1000, function (){
                 me.$el.hide();
                 me.$('.results__content').empty();
-            });
 
-            this.unbind();
-            this.stopListening();
-            this.undelegateEvents();
+                me.model.close();
+
+                me.unbind();
+                me.stopListening();
+                me.undelegateEvents();
+            });
         }
     });
 });

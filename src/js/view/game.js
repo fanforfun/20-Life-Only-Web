@@ -24,6 +24,8 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
                 $pattern;
             console.log('render parent');
 
+            $el.attr('class', $el.attr('class').replace(/\s*level-\d/g, ''));
+            $el.addClass('level-' + this.model.get('level'));
             this.renderMain($el);
 
             $el.show();

@@ -49,10 +49,6 @@ define('view/router', ['backbone', 'jquery',
         },
 
         gameOver: function() {
-            this.results.destroy();
-            delete this.results;
-            this.results = null;
-
             this.game.destroy();
             delete this.game;
             this.game = null;
