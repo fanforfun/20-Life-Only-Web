@@ -10,7 +10,8 @@ require.config({
         es5shim: '../vendor/es5-shim/es5-shim',
         bgfix: '../vendor/jquery-backgroundfix/jquery-backgroundfix',
         easing: '../vendor/jquery-easing-original/jquery.easing.1.3',
-        store: '../vendor/store2/dist/store2'
+        store: '../vendor/store2/dist/store2',
+        wallpaper: '../vendor/Wallpaper/jquery.fs.wallpaper'
     },
     shim: {
         jquery: {

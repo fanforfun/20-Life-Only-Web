@@ -14,7 +14,11 @@
                     options: {
                         separator: ''
                     },
-                    src: ['src/vendor/HTML5-Reset/assets/css/reset.css', '<%= less.assets.prepared %>'],
+                    src: [
+                        'src/vendor/HTML5-Reset/assets/css/reset.css',
+                        'src/vendor/Wallpaper/jquery.fs.wallpaper.css',
+                        '<%= less.assets.prepared %>'
+                    ],
                     dest: 'build/css/styles.css~~~~',
                     build: 'build/css/styles.css~~~~'
                 }

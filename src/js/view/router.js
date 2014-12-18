@@ -17,10 +17,25 @@ define('view/router', ['backbone', 'jquery',
         initialize: function() {
             this.listenTo(this.model, 'game:start', this.start);
             this.listenTo(this.model, 'game:over', this.gameOver);
-            this.listenTo(this.model, 'data:loaded', this.render);
+            this.listenTo(this.model, 'data:loaded', this.onLoad);
             this.listenTo(this.model, 'results:show', this.showResults);
 
             console.log('router');
+            this.renderLoading();
+        },
+
+        events: {
+            'click .overlay-start': 'render'
+        },
+
+        renderLoading: function () {
+            this.$(".wallpapered").wallpaper({
+                source: {
+                    poster: "http://formstone.it/files/demo/space.jpg",
+                    video: "https://www.youtube.com/embed/tKONNhMvPtI"
+                }
+            });
+
             this.model.loadPersons();
         },
 
@@ -54,8 +69,14 @@ define('view/router', ['backbone', 'jquery',
             this.game = null;
         },
 
+        onLoad: function () {
+            this.$('.overlay').addClass('loaded');
+        },
+
         render: function() {
             var $el = this.$('.main-screen');
+            this.$(".wallpapered").wallpaper("destroy");
+            this.$(".wallpapered").empty();
             this.$('.overlay').slideUp(500);
             this.main = new Main({
                 el: $el,

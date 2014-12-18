@@ -95,7 +95,8 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'model/stats', 'es5
         },
 
         onSuccess: function() {
-            var stats = this.stats.getStats();
+            var me = this,
+                stats = this.stats.getStats();
             //migrate score
             this.get('items').forEach(function(item) {
                 var finded = stats.filter(function (find) {
@@ -106,7 +107,10 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'model/stats', 'es5
                 }
             });
 
-            this.trigger('data:loaded');
+            setTimeout(function() {
+                //sleep!!1 Im idiot, kill me plz!
+                me.trigger('data:loaded');
+            }, 800);
         },
 
         gameStart: function(mode, cond, difficulty) {
