@@ -29,10 +29,13 @@ define('view/router', ['backbone', 'jquery',
         },
 
         renderLoading: function () {
+            //TODO extract to loading?
             this.$(".wallpapered").wallpaper({
                 source: {
-                    poster: "http://formstone.it/files/demo/space.jpg",
-                    video: "https://www.youtube.com/embed/tKONNhMvPtI"
+                    poster: "http://hosting.zaonce.net/elite/website/images/video/Missions_Web_8_10.png",
+                    mp4: "http://hosting.zaonce.net/video/Missions_Web_8_10.mp4",
+                    webm: "http://hosting.zaonce.net/video/Missions_Web_8_10.webm",
+                    ogg: "http://hosting.zaonce.net/video/Missions_Web_8_10.ogv"
                 }
             });
 

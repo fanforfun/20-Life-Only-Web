@@ -192,7 +192,7 @@
             watch: {
                 dev: {
                     options: {
-                        livereload: true
+                        livereload: false
                     },
                     files: ['Gruntfile.js', 'src/**/*.*'],
                     tasks: ['build']
