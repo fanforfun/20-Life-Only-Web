@@ -14,7 +14,7 @@ define('view/mask', ['backbone', 'jquery'], function(B, $) {
             rand = Math.ceil(Math.random() * 10) + 1;
             $el.addClass('filter-' + rand);
 
-            rand = Math.ceil(Math.random() * 10) + 1;
+            rand = Math.ceil(Math.random() * 6) + 1;
             $el.addClass('rotate-' + rand);
         },
 

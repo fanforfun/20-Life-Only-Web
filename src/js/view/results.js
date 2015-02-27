@@ -24,6 +24,10 @@ define('view/results', ['jquery', 'view/template', 'view/pattern', 'underscore']
 
             me.$el.show();
             console.log('results!');
+
+            this.$('.results__content').css({
+                opacity: 1
+            });
             this.$('.results__overlay').stop().animate({
                     opacity: 0.9
                 }, 1300,

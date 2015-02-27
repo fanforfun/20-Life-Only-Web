@@ -17,48 +17,55 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                 id++;
             });
 
-            questions = items.slice(0);
-            this.shuffle(questions);
-            this.set('questions', questions);
+            this.set('level', 0);
+            this.set('asked', 0);
 
             this.shuffle(items);
             this.set('items', items);
             console.log('init session');
+
+            this.recheckQuestions();
+        },
+
+        recheckQuestions: function() {
+            var num = 9,
+                items = this.get('items'),
+                asked = this.get('asked') || 0,
+                questions = items.slice(asked, asked + num);
+
+            this.set('asked', asked + num);
+            this.increaseLevel();
+
+            this.shuffle(questions);
+            this.set('questions', questions);
+
+            questions = questions.slice(0);
+            this.shuffle(questions);
+            this.set('realQuestions', questions);
         },
 
         getSpeedKoef: function() {
-            return Math.pow(4 - this.get('level'), 2);
+            return this.get('level') - 2;
+        },
+
+        increaseLevel: function() {
+            this.set('level', this.get('level') + 1);
         },
 
         isShaking: function() {
-            return this.get('level') >= 2;
+            return this.get('level') >= 4;
         },
 
         isPatterning: function() {
-            return this.get('level') >= 2;
-        },
-
-        isMasking: function() {
             return this.get('level') >= 3;
         },
 
-        getTimer: function() {
-            var secPerPerson,
-                personNumbers = this.get('items').length;
-            switch (this.get('level')) {
-                case 3:
-                    secPerPerson = 0.1;
-                    break;
-                case 2:
-                    secPerPerson = 5;
-                    break;
-                default:
-                case 1:
-                    secPerPerson = 10;
-                    break;
-            }
+        isMasking: function() {
+            return this.get('level') >= 5;
+        },
 
-            return secPerPerson * personNumbers * 1000;
+        getTimer: function() {
+            return 20 * 1000;
         },
 
         randHash: function() {
@@ -93,6 +100,10 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
 
         getQuestions: function() {
             return this.get('questions');
+        },
+
+        getVisualQuestions: function() {
+            return this.get('realQuestions');
         },
 
         getAnswers: function() {
@@ -149,7 +160,8 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                 current: current,
                 isCorrect: isCorrect
             });
-            if (isCorrect) {
+
+            if(isCorrect) {
                 this.trigger('correct', current);
             } else {
                 this.trigger('incorrect', current);
@@ -162,7 +174,17 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
             return this.get('playing');
         },
 
-        gameOver: function() {
+        gameOver: function(force) {
+            if (typeof force === 'undefined') {
+                force = false;
+            }
+            var asked = this.get('asked');
+            if (!force && asked < this.getItems().length) {
+                this.recheckQuestions();
+                this.trigger('level:new');
+                return;
+            }
+
             console.log('session over');
             var me = this;
             me.set('playing', false);
@@ -174,6 +196,9 @@ define('model/session', ['backbone', 'underscore', 'jquery'], function(B, _, $) 
                     current: current,
                     isCorrect: false
                 });
+            });
+            this.get('items').slice(asked).forEach(function(current) {
+                me.saveAnswer(current, false);
             });
 
             this.trigger('game:over', this.getAnswers());

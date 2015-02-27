@@ -29,7 +29,7 @@
         <title>BTW, кто все эти люди?</title>
     </head>
     <body class="app">
-        <div class="overlay">
+        <div class="overlay pattern pattern-person">
             <div class="overlay-center">
                 <div class="overlay-text">Мы грузимся...</div>
                 <div class="overlay-start">Начать</div>
@@ -37,93 +37,26 @@
             <div class="wallpapered bar"></div>
         </div>
         <div class="screen main-screen hided">
-            <div class="screen"></div>
-            <script class="template" type="text/template">
-                <div class="header">
-                    <div class="screen pattern pattern-person"></div>
-                    <h1 class="header__text">
-                        {{#isProgressWell}}
-                            {{#isAllKnown}}
-                                О боже, 10 из 10!
-                            {{/isAllKnown}}
-                            {{^isAllKnown}}
-                                Я узнаю {{ known }} из {{ all }} человек
-                                {{#isHardcore}}
-                                    даже ночью
-                                {{/isHardcore}}
-                            {{/isAllKnown}}
-                        {{/isProgressWell}}
-                        {{^isProgressWell}}
-                            Кто все эти люди?
-                        {{/isProgressWell}}
-                    </h1>
-                </div>
-
-                <div class="settings">
-                        <div class="settings_wrap">
-                            <ul class="radio settings_filter">
-                                <li data-id="1" class="radio_element">Руководители руководителей {{#aaa}}({{aaa}}%){{/aaa}}</li>
-                                <li data-id="2" class="radio_element">Руководители {{#aa}}({{aa}}%){{/aa}}</li>
-                                <li data-id="3" class="radio_element {{^incorrect}} radio_element__disabled{{/incorrect}}">Неузнанные {{#incorrect}}({{incorrect}}%){{/incorrect}}</li>
-                            </ul>
-                            <ul class="radio settings_difficulty">
-                                <li data-id="1" class="radio_element">easy</li>
-                                <li data-id="2" class="radio_element">normal</li>
-                                <li data-id="3" class="radio_element {{^isFifty}} radio_element__disabled{{/isFifty}}" {{^isFifty}}title="Станет доступным, когда вы начнете узнавать 40% коллег"{{/isFifty}}>hardcore</li>
-                            </ul>
-                            <div class="clear"></div>
-                        </div>
-                </div>
-
-                <div class="mode">
-                    <span title="Начать" data-id="1" class="button mode_start">Тест на имена</span>
-                    <span title="Начать" data-id="2" class="button mode_start">Тест на должности</span>
-                    <span title="Начать" data-id="3" class="button mode_start">Тест на лица</span>
-                </div>
-            </script>
         </div>
 
         <div class="screen game-screen hided">
-            <div class="screen game-screen-1 hided">
-                <script class="template game__template" type="text/template">
-                    <div class="face">
-                        1
-                    </div>
-                    <div class="names">
-                        <ul class="names__table">
-                            {{#answers}}
-                            <li class="name element" data-hash="{{hash}}">
-                                {{name}}
-                            </li>
-                            {{/answers}}
-                        </ul>
-                    </div>
+            <div class="screen game-screen-3 hided">
+                <script class="template game__template_face" type="text/template">
+                    <ul class="faces__list moving">
+                        {{#questions}}
+                        <li class="element" data-hash="{{hash}}">
+                            <img draggable="false" title="Нашел!" class="img_face" src="{{image}}">
+                            <div class="name_answer"></div>
+                        </li>
+                        {{/questions}}
+                    </ul>
                     <div class="clear"></div>
                 </script>
-                <div class="game__content"></div>
-            </div>
-
-            <div class="screen game-screen-2 hided">
-                <script class="template" type="text/template">
-                </script>
-                <div class="game__content"></div>
-            </div>
-
-            <div class="screen game-screen-3 hided">
                 <script class="template game__template" type="text/template">
                     <div class="faces pattern">
-                        <div class="faces__list_wrap">
-                            <ul class="faces__list moving">
-                                {{#questions}}
-                                    <li class="element" data-hash="{{hash}}">
-                                        <img draggable="false" title="Нашел!" class="img_face" src="{{image}}">
-                                        <div class="name_answer"></div>
-                                    </li>
-                                {{/questions}}
-                            </ul>
-                            <div class="clear"></div>
-                        </div>
                         <div class="timer">{{timer}}</div>
+                        <div class="faces__list_wrap">
+                        </div>
                     </div>
                     <div class="name">
                         {{#question}}
@@ -141,7 +74,7 @@
                 <div class="results__overlay screen"></div>
                 <script class="template" type="text/template">
                     <div class="results_text">
-                        Вы угадали <span class="results_text__correct">{{correct}}</span>
+                        <span class="results_text__correct">{{correct}}</span>
                         из <span class="results_text__all">{{all}}</span>!
                     </div>
                     {{#isTop}}
@@ -159,7 +92,7 @@
                         {{/top}}
                     </ul>
                     <div class="clear"></div>
-                    <div class="results__footer">Press any key to continue...</div>
+                    <div class="results__footer">Нажмите любую клавишу, чтобы начать заново...</div>
                 </script>
             </div>
         </div>

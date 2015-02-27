@@ -3,13 +3,15 @@ define('view/router', ['backbone', 'jquery',
                 'view/game/names',
                 'view/game/positions',
                 'view/game/faces',
-                'view/results'
+                'view/results',
+                'view/pattern'
         ], function(B, $,
                 Main,
                 NamesGame,
                 PositionsGame,
                 FacesGame,
-                Results
+                Results,
+                Pattern
     ) {
     'use strict';
 
@@ -29,20 +31,19 @@ define('view/router', ['backbone', 'jquery',
         },
 
         renderLoading: function () {
-            //TODO extract to loading?
-            this.$(".wallpapered").wallpaper({
-                source: {
-                    poster: "http://hosting.zaonce.net/elite/website/images/video/Trading_Web_8_10.png",
-                    mp4: "http://hosting.zaonce.net/video/Trading_Web_8_10.mp4",
-                    webm: "http://hosting.zaonce.net/video/Trading_Web_8_10.webm",
-                    ogg: "http://hosting.zaonce.net/video/Trading_Web_8_10.ogv"
-                }
+            var $pattern = this.$el.find('.overlay.pattern');
+
+            this.pattern = new Pattern({
+                el: $pattern
             });
 
             this.model.loadPersons();
         },
 
         start: function(params) {
+            if (this.pattern) {
+                this.pattern.stop();
+            }
             var $el = this.$('.game-screen'),
                 mode = params.mode,
                 constr = {
@@ -51,6 +52,8 @@ define('view/router', ['backbone', 'jquery',
                 };
 
             console.log('start', mode);
+            this.game = new FacesGame(constr);
+            return;
             switch (mode) {
                 case 1 :
                     this.game = new NamesGame(constr);

@@ -18,20 +18,22 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
             );
         },
 
-        render: function() {
+        renderFaces: function() {
             var me = this,
                 $el = this.$('.game-screen-' + this.model.get('screen')),
                 $pattern;
-            console.log('render parent');
 
-            $el.attr('class', $el.attr('class').replace(/\s*level-\d/g, ''));
-            $el.addClass('level-' + this.model.get('level'));
-            this.renderMain($el);
+            this.renderTemplate(
+                $el.find('.faces__list_wrap'),
+                $el.find('.game__template_face').text(),
+                {
+                    questions: this.model.getQuestions()
+                }
+            );
 
-            $el.show();
             $pattern = $el.find('.pattern');
 
-            if (this.model.isPatterning() && $pattern.length) {
+            if (this.model.isPatterning() && $pattern.length && !this.pattern) {
                 this.pattern = new Pattern({
                     el: $pattern
                 });
@@ -46,6 +48,21 @@ define('view/game', ['view/pattern', 'view/template', 'view/mask'], function(Pat
                     );
                 });
             }
+        },
+
+        render: function() {
+            var me = this,
+                $el = this.$('.game-screen-' + this.model.get('screen'));
+
+            console.log('render parent');
+
+            $el.attr('class', $el.attr('class').replace(/\s*level-\d/g, ''));
+            $el.addClass('level-' + this.model.get('level'));
+            this.renderMain($el);
+
+            $el.show();
+
+            this.renderFaces();
 
             this.$el.show();
         },

@@ -1,4 +1,4 @@
-define('view/game/faces', ['view/game'], function(Game) {
+define('view/game/faces', ['view/game', 'view/pattern', 'view/mask'], function(Game, Pattern, Mask) {
     'use strict';
 
     return Game.extend({
@@ -10,6 +10,7 @@ define('view/game/faces', ['view/game'], function(Game) {
             this.listenTo(this.model, 'incorrect', this.onIncorrect);
             this.listenTo(this.model, 'answer', this.showAnswer);
             this.listenTo(this.model, 'game:over', this.onGameOver);
+            this.listenTo(this.model, 'level:new', this.renderFaces);
 
             console.log('game faces');
 
@@ -23,23 +24,46 @@ define('view/game/faces', ['view/game'], function(Game) {
         /**
          * @override
          */
-        renderMain: function($el) {
-            var me = this;
-            console.log('render faces');
+        renderFaces: function() {
+            var me = this,
+                $el = this.$('.game-screen-' + this.model.get('screen')),
+                $pattern;
 
+            $el.find('.faces__list_wrap').empty();
+            setTimeout(function() {
+
+            }, 400);
             this.renderTemplate(
-                $el.find('.game__content'),
-                $el.find('.game__template').text(),
+                $el.find('.faces__list_wrap'),
+                $el.find('.game__template_face').text(),
                 {
-                    questions: this.model.getItems(),
+                    questions: this.model.getVisualQuestions(),
                     question: this.model.getCurrent(),
                     timer: this.model.getTimer() / 1000
                 }
             );
 
+            $pattern = $el.find('.pattern');
+
+            if (this.model.isPatterning() && $pattern.length && !this.pattern) {
+                this.pattern = new Pattern({
+                    el: $pattern
+                });
+            }
+
+            if (this.model.isMasking()) {
+                this.$('.img_face').each(function(key, item) {
+                    me.masks.push(
+                        new Mask({
+                            el: $(item)
+                        })
+                    );
+                });
+            }
+
             setTimeout(function() {
                 $el.find('.faces__list').css({
-                    width: me.model.getQuestions().length < 11 ? '60%' : '70%'
+                    width: me.model.getQuestions().length < 11 ? '70%' : '70%'
                 });
                 var top = $el.find('.faces').height() / 2 - $el.find('.faces__list').height() / 2;
                 me.top = top;
@@ -51,6 +75,23 @@ define('view/game/faces', ['view/game'], function(Game) {
                     }
                 });
             }, 100);
+        },
+
+        /**
+         * @override
+         */
+        renderMain: function($el) {
+            var me = this;
+            console.log('render faces');
+
+            this.renderTemplate(
+                $el.find('.game__content'),
+                $el.find('.game__template').text(),
+                {
+                    question: this.model.getCurrent(),
+                    timer: this.model.getTimer() / 1000
+                }
+            );
 
             this.startTimer();
         },
@@ -67,7 +108,7 @@ define('view/game/faces', ['view/game'], function(Game) {
                 randY = this.model.getRandom(maxHeight),
                 shiftY = this.top + randY - maxHeight / 2,
                 shiftX = randX - maxWidth / 2,
-                time = 600 + this.model.getRandom(8) * 100 * this.model.getSpeedKoef();
+                time = (3000 - this.model.getRandom(6) * 100) / this.model.getSpeedKoef();
 
             $someEl.stop().animate({
                 top: shiftY + 'px',
@@ -79,31 +120,47 @@ define('view/game/faces', ['view/game'], function(Game) {
         },
 
         startTimer: function() {
+            this.whenTimerDies = +(new Date()) + this.model.getTimer();
             var me = this,
-                time = +(new Date()) + this.model.getTimer(),
+                timer = this.whenTimerDies,
                 isAnimated = false,
                 lastSecs = 5,
                 $timer = me.$('.timer');
             this.interval = setInterval(function() {
                 var current = +(new Date()),
-                    last = time - current,
+                    last = me.whenTimerDies - current,
                     timeLast = (last / 1000).toFixed(1);
+
+                if (timer < me.whenTimerDies) {
+                    console.log('timer increase!', timeLast);
+                    $timer.stop().animate({
+                        'font-size': '+=2px'
+                    }, 200, 'easeOutElastic');
+
+                } else if (timer > me.whenTimerDies) {
+                    $timer.stop().animate({left : '3', top: '1vw'},30)
+                        .animate({left : '-3', top: '3vw'},30)
+                        .animate({left : '1', top: '0vw'},30).
+                        animate({left : '-1', top: '3vw'},30)
+                        .animate({left: '0', top: '2vw'},30);
+                    console.log('timer descrease!', timeLast);
+                }
+                timer = me.whenTimerDies;
 
                 $timer.html(timeLast < 0.1 ? '' : timeLast);
 
                 if (last <= 0 || !me.model.isPlaying()) {
                     console.log('time out!');
                     clearInterval(me.interval);
-                    me.model.gameOver();
+                    me.model.gameOver(true);
                     return;
                 }
 
                 if (!isAnimated && last <= lastSecs * 1000) {
                     console.log('last ' + lastSecs + ' secs!');
                     $timer.stop().animate({
-                        'font-size': '+=5vw',
-                        top: '-=2v'
-                    }, lastSecs * 1000, 'easeOutBounce');
+                        'font-size': '+=3vw'
+                    }, lastSecs * 1000, 'easeOutElastic');
                     isAnimated = true;
                 }
             }, 50);
@@ -112,6 +169,7 @@ define('view/game/faces', ['view/game'], function(Game) {
         onGameOver: function () {
             this.$('.name_question').hide();
             this.$('.skip').hide();
+            this.$('.timer').hide();
             this._super('onGameOver');
         },
 
@@ -137,12 +195,14 @@ define('view/game/faces', ['view/game'], function(Game) {
 
         onCorrect: function(current) {
             console.log('correct');
+            this.whenTimerDies += 4 * 1000;
 
             this.showNew(current);
         },
 
         onIncorrect: function(current) {
             console.log('incorrect');
+            this.whenTimerDies -= 3 * 1000;
 
             this.showNew(current);
         },

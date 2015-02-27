@@ -79,8 +79,7 @@ define('model/game', ['backbone', 'jquery', 'model/session', 'model/stats', 'es5
         },
 
         getSession: function(params) {
-            var filter = this.getFilter(params.cond),
-                filtered = this.get('items').filter(filter),
+            var filtered = this.get('items'),
                 session = new Session({
                     items: filtered,
                     level: params.difficulty,

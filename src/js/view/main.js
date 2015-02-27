@@ -47,7 +47,9 @@ define('view/main', ['jquery', 'view/template', 'view/pattern', 'underscore'], f
         },
 
         _onGameStart: function() {
-            this.pattern.destroy();
+            if (this.pattern) {
+                this.pattern.destroy();
+            }
             this.pattern = null;
             this.$el.hide();
         },
@@ -58,6 +60,7 @@ define('view/main', ['jquery', 'view/template', 'view/pattern', 'underscore'], f
         },
 
         render: function() {
+            return this.model.gameStart(3, 1, 1);
             var me = this,
                 settings = this.model.getSettings(),
                 stats = this.model.getStats(),

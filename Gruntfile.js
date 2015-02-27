@@ -68,8 +68,8 @@
                 }
             },
             jshint: {
-                jshintrc: '.jshintrc',
                 options: {
+                    jshintrc: '.jshintrc',
                     reporter: require('jshint-stylish')
                 },
                 files: ['src/js/**/*.js']
