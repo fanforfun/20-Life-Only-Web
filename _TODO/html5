@@ -1,0 +1,35 @@
+Его задача — сжать окно и отцентрировать е•го по середине
+экрана (если, конечно, это возможно).
+(function (global) {
+"use strict";
+global = global || {};
+var width = 600,
+height = 400;
+if (global.resizeTo) {
+154
+Теги в head
+global.resizeTo(width, height);
+}
+if (global.screen && global.moveTo) {
+var positionX = Math.ceil((global.screen.width / 2) -
+(width / 2)),
+positionY = Math.ceil((global.screen.height / 2) -
+(height / 2));
+global.moveTo(positionX, positionY);
+}
+})(this);
+Берется соотношение сторон 600 х 400 px. Если у объекта
+window есть метод moveTo и свойство screen, тогда можно
+попытаться сжать окно и передвинуть его на центр экрана.
+Ну а с этим, наверное, уже знакомы?
+<script src="js/html5.js"></script>
+Бежим по новым тегам HTML5 и пересоздаем их для старых IE:
+var tags = [
+"article",
+"video",
+"wbr"
+...
+];
+for(var i = 0, l = tags.length; i < l; i++) {
+document.createElement(tags[i]);
+}

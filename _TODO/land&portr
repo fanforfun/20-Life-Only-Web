@@ -1,0 +1,27 @@
+Стили для книжной и альбомной ориентации иногда могут
+пригодиться при верстке сложных макетов:
+<link href="css/portrait.css" media="all and (orientation:portrait)"
+
+      rel="stylesheet"/>
+<link href="css/landscape.css" media="all and
+	 (orientation:landscape)" rel="stylesheet"/>
+
+	 /*
+     @media all and (orientation: portrait) {
+         @-ms-viewport {
+             width: 320px;
+             user-zoom: fixed;
+             max-zoom: 1;
+             min-zoom: 1;
+         }
+     }
+
+     @media all and (orientation: landscape) {
+         @-ms-viewport {
+             width: 480px;
+             user-zoom: fixed;
+             max-zoom: 1;
+             min-zoom: 1;
+         }
+     }
+     */

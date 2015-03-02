@@ -1,0 +1,39 @@
+<title></title>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<meta name="author" content=""/>
+<meta name="copyright" content=""/>
+<meta http-equiv="Reply-to" content=""/>
+
+<meta property="og:title" content=""/>
+<meta property="og:description" content=""/>
+<meta property="og:image" content=""/>
+<meta property="og:site_name" content=""/>
+<meta property="og:url" content=""/>
+
+name="twitter:card" content="summary"/>
+name="twitter:title" content=""/>
+name="twitter:description" content=""/>
+name="twitter:creator" content=""/>
+name="twitter:image:src" content=""/>
+name="twitter:domain" content=""/>
+name="twitter:site" content=""/>
+
+<meta itemprop="name" content=""/>
+<meta itemprop="description" content=""/>
+<meta itemprop="image" content=""/>
+
+<meta name="application-name" content=""/>
+<meta name="msapplication-tooltip" content=""/>
+
+<link rel="apple-touch-startup-image" href="startup.png"/>
+<link rel="apple-touch-icon" href="touch-icon-iphone.png"/>
+<link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png"/>
+<link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone-retina.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="touch-icon-ipad-retina.png"/>
+
+<meta name="msapplication-TileImage" content="custom_icon_144.png"/>
+<meta name="msapplication-square70x70logo" content="custom_icon_70.png"/>
+<meta name="msapplication-square150x150logo" content="custom_icon_150.png"/>
+<meta name="msapplication-square310x310logo" content="custom_icon_310.png"/>
+<meta name="msapplication-wide310x150logo" content="custom_icon_310x150.png"/>

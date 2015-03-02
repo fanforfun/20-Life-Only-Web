@@ -11,19 +11,12 @@
     "debug": false,
     "devel": false,
 
-    "workerworker": false,
-    "browser": false,
-    "node": false,
-    "jquery": false,
+    "browser": true,
 
     "esnext": false, // not use ES.next features like "const"
     "strict": true, // ecmascript strict mode for function scopes
     //TODO
     "globalstrict": false,
-
-    "freeze": false, //This options prohibits overwriting prototypes of native objects such as Array, Date and so on.
-
-    "asi": false,  // semicolons
 
     "laxbreak": false,   // Tolerate unsafe line breaks e.g. `return [\n] x` without semicolons.
     "laxcomma": false, // do not use comma-first style
@@ -44,7 +37,7 @@
     "supernew": false,  // Tolerate `new function () { ... };` and `new Object;`.
     "onecase": false, // do not use switch, if an if-block will be better
 
-    "unused": true,  //
+    "unused": true,  //This option warns when you define and never use your variables.
     "undef": true,   // Require all non-global variables be declared before they are used.
     "funcscope": false, // never declare variables in blocks othen than functions
     "shadow": false,  // Allows re-define variables later in code e.g. `var x=1; x=2;`.
@@ -57,7 +50,7 @@
     "nonbsp": true, //warns about "non-breaking whitespace" characters
 
     "maxdepth": 2, // maximum nesting blocks
-    "maxparams": 3, //the max number of formal parameters allowed per function:
+    "maxparams": 6, //the max number of formal parameters allowed per function:
     //TODO
     "maxstatements": 10, //the max number of statements allowed per function
 

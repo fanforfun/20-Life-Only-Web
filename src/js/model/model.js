@@ -1,4 +1,4 @@
-define('model/model', ['jquery'],function(B, _, $) {
+define('model/model', ['jquery'], function(B, _, $) {
     'use strict';
 
     return {

@@ -1,6 +1,7 @@
 {
     "safeContextKeyword": [ "me", "that" ],
 
+    "maximumLineLength": 160,
     "excludeFiles": [
         "node_modules/**",
         "vendor/**",
@@ -13,26 +14,14 @@
     "requireCurlyBraces": ["if", "else", "for", "while", "do", "try", "catch"],
     "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
     "disallowKeywordsOnNewLine": ["else"],
-    "requireOperatorBeforeLineBreak": [
-        "?",
-        "+",
-        "-",
-        "/",
-        "*",
-        "=",
-        "==",
-        "===",
-        "!=",
-        "!==",
-        ">",
-        ">=",
-        "<",
-        "<="
-    ],
+    "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+    "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
 
     "requireSpaceBeforeBinaryOperators": true,
     "requireSpaceBeforePostfixUnaryOperators": true,
     "requireSpacesInConditionalExpression": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireSpaceAfterPrefixUnaryOperators": true,
 
     "requireDotNotation": true,
     "requireParenthesesAroundIIFE": true,
@@ -48,7 +37,6 @@
     "disallowQuotedKeysInObjects": true,
     "disallowSpaceAfterObjectKeys": true,
     "requireCommaBeforeLineBreak": true,
-    "requireAlignedObjectValues": "all",
     "disallowSpacesInsideArrayBrackets": true,
     "disallowSpacesInFunctionExpression": {
         "beforeOpeningRoundBrace": true

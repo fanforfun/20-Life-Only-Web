@@ -50,7 +50,7 @@
                         collapseWhitespace: true
                     },
                     files: {
-                        'build/index.html': '<%= pkg.html %>'
+                        'build/index.html': '<%= pkg.html %>~'
                     }
                 }
             },
@@ -62,6 +62,9 @@
             },
             jshint: {
                 jshintrc: '.jshintrc',
+                options: {
+                    reporter: require('jshint-stylish')
+                },
                 files: ['src/js/**/*.js']
             },
             htmlhint: {
@@ -80,18 +83,55 @@
                     src: ['<%= less.assets.prepared %>']
                 }
             },
+            imagemin: {
+                dynamic: {
+                    files: [{
+                        expand: true,
+                        cwd: 'src/img/',
+                        src: ['**/*.{png,jpg,gif}'],
+                        dest: 'build/img'
+                    }]
+                }
+            },
             requirejs: {
                 compile: {
                     options: {
+                        waitSeconds : 0,
                         baseUrl: 'src/js',
                         mainConfigFile:'./src/config.js',
                         out: 'build/js/app.js',
-                        optimize: 'none', //TODO 'uglify'
+                        optimize: 'uglify2',
                         logLevel: 0,
+                        generateSourceMaps: false,
+                        preserveLicenseComments: true,
+                        removeCombined: true,
                         findNestedDependencies: true,
                         fileExclusionRegExp: /^\./,
-                        inlineText: true
+                        paths : {
+                            requireLib : '../vendor/requirejs/require'
+                        },
+                        include : [
+                            'requireLib'
+                        ],
+                        inlineText: true,
+                        done: function(done, output) {
+                            var duplicates = require('rjs-build-analysis').duplicates(output);
+
+                            if (duplicates.length > 0) {
+                                grunt.log.subhead('Duplicates found in requirejs build:');
+                                grunt.log.warn(duplicates);
+                                return done(new Error('r.js built duplicate modules, please check the excludes option.'));
+                            }
+
+                            done();
+                        }
                     }
+                }
+            },
+            preprocess : {
+                web : {
+                    src : '<%= pkg.html %>',
+                    dest : '<%= pkg.html %>~'
                 }
             },
             watch: {
@@ -100,7 +140,7 @@
                         livereload: true
                     },
                     files: ['.*', 'Gruntfile.js', 'src/**/*.*'],
-                    tasks: ['default']
+                    tasks: ['build']
                 },
                 livereload: {
                     options: {
@@ -127,16 +167,37 @@
         grunt.loadNpmTasks('grunt-contrib-csslint');
         grunt.loadNpmTasks('grunt-contrib-cssmin');
         grunt.loadNpmTasks('grunt-contrib-htmlmin');
+        grunt.loadNpmTasks('grunt-contrib-imagemin');
         grunt.loadNpmTasks('grunt-contrib-less');
         grunt.loadNpmTasks('grunt-contrib-requirejs');
+        grunt.loadNpmTasks('grunt-preprocess');
+
+        grunt.registerTask('lint', [
+            'htmlhint', 'jscs', 'jshint'
+        ]);
+
+        grunt.registerTask('build:css', [
+            'less', 'csslint', 'concat', 'cssmin'
+        ]);
+
+        grunt.registerTask('build:html', [
+            'preprocess:web', 'htmlmin'
+        ]);
+
+        grunt.registerTask('build:img', [
+            'imagemin'
+        ]);
+
+        grunt.registerTask('build:js', [
+            'requirejs:compile'
+        ]);
+
+        grunt.registerTask('build', [
+            'lint', 'build:css', 'build:js','build:img', 'build:html'
+        ]);
 
         grunt.registerTask('default', [
-            'htmlhint', 'jscs', 'jshint',
-            'less',
-            'csslint',
-            'concat',
-            'cssmin', 'htmlmin',
-            'requirejs'
+            'build'
         ]);
 
     };
